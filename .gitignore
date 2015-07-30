@@ -1,4 +1,5 @@
 *.sdf
 *.suo
 debug
+release
 ipch
