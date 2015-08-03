@@ -1,4 +1,4 @@
-// Modern v1.23 - http://moderncpp.com
+// Modern v1.25 - http://moderncpp.com
 // Copyright (c) 2015 Kenny Kerr
 
 #pragma once
@@ -772,32 +772,32 @@ struct impl_IAsyncInfo
 	unsigned Id() const
 	{
 		unsigned id;
-		check((*static_cast<T const *>(this))->get_Id(&id));
+		check(static_cast<IAsyncInfo const &>(static_cast<T const &>(*this))->get_Id(&id));
 		return id;
 	}
 
 	AsyncStatus Status() const
 	{
 		AsyncStatus status;
-		check((*static_cast<T const *>(this))->get_Status(&status));
+		check(static_cast<IAsyncInfo const &>(static_cast<T const &>(*this))->get_Status(&status));
 		return status;
 	}
 
 	HRESULT ErrorCode() const
 	{
 		HRESULT code;
-		check((*static_cast<T const *>(this))->get_ErrorCode(&code));
+		check(static_cast<IAsyncInfo const &>(static_cast<T const &>(*this))->get_ErrorCode(&code));
 		return code;
 	}
 
 	void Cancel() const
 	{
-		check((*static_cast<T const *>(this))->abi_Cancel());
+		check(static_cast<IAsyncInfo const &>(static_cast<T const &>(*this))->abi_Cancel());
 	}
 
 	void Close() const
 	{
-		check((*static_cast<T const *>(this))->abi_Close());
+		check(static_cast<IAsyncInfo const &>(static_cast<T const &>(*this))->abi_Close());
 	}
 };
 
@@ -815,7 +815,7 @@ struct impl_IActivationFactory
 	IInspectable ActivateInstance() const
 	{
 		IInspectable instance;
-		check((*static_cast<T const *>(this))->abi_ActivateInstance(set(instance)));
+		check(static_cast<T const &>(*this)->abi_ActivateInstance(set(instance)));
 		return instance;
 	}
 };
@@ -1094,7 +1094,7 @@ struct impl_IAsyncActionProgressHandler
 {
 	void Invoke(IAsyncActionWithProgress<TProgress> const & sender, TProgress const & args) const
 	{
-		check((*static_cast<D const *>(this))->abi_Invoke(get(sender), abi(args)));
+		check(static_cast<D const &>(*this)->abi_Invoke(get(sender), abi(args)));
 	}
 };
 
@@ -1103,7 +1103,7 @@ struct impl_IAsyncActionWithProgress
 {
 	void Progress(IAsyncActionProgressHandler<TProgress> const & handler) const
 	{
-		check((*static_cast<D const *>(this))->put_Progress(get(handler)));
+		check(static_cast<D const &>(*this)->put_Progress(get(handler)));
 	}
 
 	template <typename Handler>
@@ -1115,13 +1115,13 @@ struct impl_IAsyncActionWithProgress
 	IAsyncActionProgressHandler<TProgress> Progress() const
 	{
 		IAsyncActionProgressHandler<TProgress> handler;
-		check((*static_cast<D const *>(this))->get_Progress(set(handler)));
+		check(static_cast<D const &>(*this)->get_Progress(set(handler)));
 		return handler;
 	}
 
 	void Completed(IAsyncActionWithProgressCompletedHandler<TProgress> const & handler) const
 	{
-		check((*static_cast<D const *>(this))->put_Completed(get(handler)));
+		check(static_cast<D const &>(*this)->put_Completed(get(handler)));
 	}
 
 	template <typename Handler>
@@ -1133,13 +1133,13 @@ struct impl_IAsyncActionWithProgress
 	IAsyncActionWithProgressCompletedHandler<TProgress> Completed() const
 	{
 		IAsyncActionWithProgressCompletedHandler<TProgress> handler;
-		check((*static_cast<D const *>(this))->get_Completed(set(handler)));
+		check(static_cast<D const &>(*this)->get_Completed(set(handler)));
 		return handler;
 	}
 
 	void GetResults() const
 	{
-		check((*static_cast<D const *>(this))->abi_GetResults());
+		check(static_cast<D const &>(*this)->abi_GetResults());
 	}
 };
 
@@ -1148,7 +1148,7 @@ struct impl_IAsyncActionWithProgressCompletedHandler
 {
 	void Invoke(IAsyncActionWithProgress<TProgress> const & sender, AsyncStatus const args) const
 	{
-		check((*static_cast<D const *>(this))->abi_Invoke(get(sender), args));
+		check(static_cast<D const &>(*this)->abi_Invoke(get(sender), args));
 	}
 };
 
@@ -1157,7 +1157,7 @@ struct impl_IAsyncOperationProgressHandler
 {
 	void Invoke(IAsyncOperationWithProgress<TResult, TProgress> const & sender, TProgress const & args) const
 	{
-		check((*static_cast<D const *>(this))->abi_Invoke(get(sender), abi(args)));
+		check(static_cast<D const &>(*this)->abi_Invoke(get(sender), abi(args)));
 	}
 };
 
@@ -1166,7 +1166,7 @@ struct impl_IAsyncOperationWithProgressCompletedHandler
 {
 	void Invoke(IAsyncOperationWithProgress<TResult, TProgress> const & sender, AsyncStatus const args) const
 	{
-		check((*static_cast<D const *>(this))->abi_Invoke(get(sender), args));
+		check(static_cast<D const &>(*this)->abi_Invoke(get(sender), args));
 	}
 };
 
@@ -1175,7 +1175,7 @@ struct impl_IAsyncOperationCompletedHandler
 {
 	void Invoke(IAsyncOperation<TResult> const & sender, AsyncStatus const args) const
 	{
-		check((*static_cast<D const *>(this))->abi_Invoke(get(sender), args));
+		check(static_cast<D const &>(*this)->abi_Invoke(get(sender), args));
 	}
 };
 
@@ -1184,7 +1184,7 @@ struct impl_IEventHandler
 {
 	void Invoke(IInspectable const & sender, T const & args) const
 	{
-		check((*static_cast<D const *>(this))->abi_Invoke(get(sender), abi(args)));
+		check(static_cast<D const &>(*this)->abi_Invoke(get(sender), abi(args)));
 	}
 };
 
@@ -1193,7 +1193,7 @@ struct impl_ITypedEventHandler
 {
 	void Invoke(TSender const & sender, TArgs const & args) const
 	{
-		check((*static_cast<D const *>(this))->abi_Invoke(abi(sender), abi(args)));
+		check(static_cast<D const &>(*this)->abi_Invoke(abi(sender), abi(args)));
 	}
 };
 
@@ -1202,7 +1202,7 @@ struct impl_IAsyncOperation
 {
 	void Completed(IAsyncOperationCompletedHandler<TResult> const & handler) const
 	{
-		check((*static_cast<D const *>(this))->put_Completed(get(handler)));
+		check(static_cast<D const &>(*this)->put_Completed(get(handler)));
 	}
 
 	template <typename Handler>
@@ -1214,14 +1214,14 @@ struct impl_IAsyncOperation
 	IAsyncOperationCompletedHandler<TResult> Completed() const
 	{
 		IAsyncOperationCompletedHandler<TResult> temp;
-		check((*static_cast<D const *>(this))->get_Completed(set(temp)));
+		check(static_cast<D const &>(*this)->get_Completed(set(temp)));
 		return temp;
 	}
 
 	TResult GetResults() const
 	{
 		TResult result = Argument<TResult>::Empty();
-		check((*static_cast<D const *>(this))->abi_GetResults(abi(&result)));
+		check(static_cast<D const &>(*this)->abi_GetResults(abi(&result)));
 		return result;
 	}
 };
@@ -1231,7 +1231,7 @@ struct impl_IAsyncOperationWithProgress
 {
 	void Progress(IAsyncOperationProgressHandler<TResult, TProgress> const & handler) const
 	{
-		check((*static_cast<D const *>(this))->put_Progress(get(handler)));
+		check(static_cast<D const &>(*this)->put_Progress(get(handler)));
 	}
 
 	template <typename Handler>
@@ -1243,13 +1243,13 @@ struct impl_IAsyncOperationWithProgress
 	IAsyncOperationProgressHandler<TResult, TProgress> Progress() const
 	{
 		IAsyncOperationProgressHandler<TResult, TProgress> handler;
-		check((*static_cast<D const *>(this))->get_Progress(set(handler)));
+		check(static_cast<D const &>(*this)->get_Progress(set(handler)));
 		return handler;
 	}
 
 	void Completed(IAsyncOperationWithProgressCompletedHandler<TResult, TProgress> const & handler) const
 	{
-		check((*static_cast<D const *>(this))->put_Completed(get(handler)));
+		check(static_cast<D const &>(*this)->put_Completed(get(handler)));
 	}
 
 	template <typename Handler>
@@ -1261,14 +1261,14 @@ struct impl_IAsyncOperationWithProgress
 	IAsyncOperationWithProgressCompletedHandler<TResult, TProgress> Completed() const
 	{
 		IAsyncOperationWithProgressCompletedHandler<TResult, TProgress> handler;
-		check((*static_cast<D const *>(this))->get_Completed(set(handler)));
+		check(static_cast<D const &>(*this)->get_Completed(set(handler)));
 		return handler;
 	}
 
 	TResult GetResults() const
 	{
 		TResult result = Argument<TResult>::Empty();
-		check((*static_cast<D const *>(this))->abi_GetResults(abi(&result)));
+		check(static_cast<D const &>(*this)->abi_GetResults(abi(&result)));
 		return result;
 	}
 };
@@ -1279,7 +1279,7 @@ struct impl_IReference
 	T Value() const
 	{
 		T result = Argument<T>::Empty();
-		check((*static_cast<D const *>(this))->get_Value(abi(&result)));
+		check(static_cast<D const &>(*this)->get_Value(abi(&result)));
 		return result;
 	}
 };
@@ -1491,14 +1491,14 @@ struct impl_IVectorChangedEventArgs
 	CollectionChange CollectionChange() const
 	{
 		Collections::CollectionChange value = {};
-		check((*static_cast<D const *>(this))->get_CollectionChange(&value));
+		check(static_cast<D const &>(*this)->get_CollectionChange(&value));
 		return value;
 	}
 
 	unsigned Index() const
 	{
 		unsigned index;
-		check((*static_cast<D const *>(this))->get_Index(&index));
+		check(static_cast<D const &>(*this)->get_Index(&index));
 		return index;
 	}
 };
@@ -1671,21 +1671,21 @@ struct impl_IIterator
 	T Current() const
 	{
 		T result = Argument<T>::Empty();
-		check((*static_cast<D const *>(this))->get_Current(abi(&result)));
+		check(static_cast<D const &>(*this)->get_Current(abi(&result)));
 		return result;
 	}
 
 	bool HasCurrent() const
 	{
 		boolean temp = 0;
-		check((*static_cast<D const *>(this))->get_HasCurrent(&temp));
+		check(static_cast<D const &>(*this)->get_HasCurrent(&temp));
 		return 0 != temp;
 	}
 
 	bool MoveNext() const
 	{
 		boolean temp = 0;
-		check((*static_cast<D const *>(this))->abi_MoveNext(&temp));
+		check(static_cast<D const &>(*this)->abi_MoveNext(&temp));
 		return 0 != temp;
 	}
 
@@ -1693,7 +1693,7 @@ struct impl_IIterator
 	{
 		if (!MoveNext())
 		{
-			*static_cast<D *>(this) = nullptr;
+			static_cast<D &>(*this) = nullptr;
 		}
 
 		return *this;
@@ -1711,7 +1711,7 @@ struct impl_IIterable
 	IIterator<T> First() const
 	{
 		IIterator<T> iterator;
-		check(static_cast<IIterable<T> const &>(*static_cast<D const *>(this))->abi_First(set(iterator)));
+		check(static_cast<IIterable<T> const &>(static_cast<D const &>(*this))->abi_First(set(iterator)));
 		return iterator;
 	}
 };
@@ -1722,14 +1722,14 @@ struct impl_IKeyValuePair
 	K Key() const
 	{
 		K result = Argument<K>::Empty();
-		check((*static_cast<D const *>(this))->get_Key(abi(&result)));
+		check(static_cast<D const &>(*this)->get_Key(abi(&result)));
 		return result;
 	}
 
 	V Value() const
 	{
 		V result = Argument<V>::Empty();
-		check((*static_cast<D const *>(this))->get_Value(abi(&result)));
+		check(static_cast<D const &>(*this)->get_Value(abi(&result)));
 		return result;
 	}
 };
@@ -1740,21 +1740,21 @@ struct impl_IVectorView
 	T GetAt(unsigned const index) const
 	{
 		T result = Argument<T>::Empty();
-		check((*static_cast<D const *>(this))->abi_GetAt(index, abi(&result)));
+		check(static_cast<IVectorView<T> const &>(static_cast<D const &>(*this))->abi_GetAt(index, abi(&result)));
 		return result;
 	}
 
 	unsigned Size() const
 	{
 		unsigned size = 0;
-		check((*static_cast<D const *>(this))->get_Size(&size));
+		check(static_cast<IVectorView<T> const &>(static_cast<D const &>(*this))->get_Size(&size));
 		return size;
 	}
 
 	bool IndexOf(T const & value, unsigned & index) const
 	{
 		boolean found = false;
-		check((*static_cast<D const *>(this))->abi_IndexOf(get(value), &index, &found));
+		check(static_cast<IVectorView<T> const &>(static_cast<D const &>(*this))->abi_IndexOf(get(value), &index, &found));
 		return 0 != found;
 	}
 };
@@ -1765,59 +1765,59 @@ struct impl_IVector
 	T GetAt(unsigned const index) const
 	{
 		T result = Argument<T>::Empty();
-		check((*static_cast<D const *>(this))->abi_GetAt(index, abi(&result)));
+		check(static_cast<IVector<T> const &>(static_cast<D const &>(*this))->abi_GetAt(index, abi(&result)));
 		return result;
 	}
 
 	unsigned Size() const
 	{
 		unsigned size = 0;
-		check((*static_cast<D const *>(this))->get_Size(&size));
+		check(static_cast<IVector<T> const &>(static_cast<D const &>(*this))->get_Size(&size));
 		return size;
 	}
 
 	IVectorView<T> GetView() const
 	{
 		IVectorView<T> view;
-		check((*static_cast<D const *>(this))->abi_GetView(set(view)));
+		check(static_cast<IVector<T> const &>(static_cast<D const &>(*this))->abi_GetView(set(view)));
 		return view;
 	}
 
 	bool IndexOf(T const & value, unsigned & index) const
 	{
 		boolean found = false;
-		check((*static_cast<D const *>(this))->abi_IndexOf(abi(value), &index, &found));
+		check(static_cast<IVector<T> const &>(static_cast<D const &>(*this))->abi_IndexOf(abi(value), &index, &found));
 		return 0 != found;
 	}
 
 	void SetAt(unsigned const index, T const & value) const
 	{
-		check((*static_cast<D const *>(this))->abi_SetAt(index, abi(value)));
+		check(static_cast<IVector<T> const &>(static_cast<D const &>(*this))->abi_SetAt(index, abi(value)));
 	}
 
 	void InsertAt(unsigned const index, T const & value) const
 	{
-		check((*static_cast<D const *>(this))->abi_InsertAt(index, abi(value)));
+		check(static_cast<IVector<T> const &>(static_cast<D const &>(*this))->abi_InsertAt(index, abi(value)));
 	}
 
 	void RemoveAt(unsigned const index) const
 	{
-		check((*static_cast<D const *>(this))->abi_RemoveAt(index));
+		check(static_cast<IVector<T> const &>(static_cast<D const &>(*this))->abi_RemoveAt(index));
 	}
 
 	void Append(T const & value) const
 	{
-		check((*static_cast<D const *>(this))->abi_Append(abi(value)));
+		check(static_cast<IVector<T> const &>(static_cast<D const &>(*this))->abi_Append(abi(value)));
 	}
 
 	void RemoveAtEnd() const
 	{
-		check((*static_cast<D const *>(this))->abi_RemoveAtEnd());
+		check(static_cast<IVector<T> const &>(static_cast<D const &>(*this))->abi_RemoveAtEnd());
 	}
 
 	void Clear() const
 	{
-		check((*static_cast<D const *>(this))->abi_Clear());
+		check(static_cast<IVector<T> const &>(static_cast<D const &>(*this))->abi_Clear());
 	}
 };
 
@@ -1827,27 +1827,27 @@ struct impl_IMapView
 	V Lookup(K const & key) const
 	{
 		V result = Argument<V>::Empty();
-		check((*static_cast<D const *>(this))->abi_Lookup(abi(key), abi(&result)));
+		check(static_cast<IMapView<K, V> const &>(static_cast<D const &>(*this))->abi_Lookup(abi(key), abi(&result)));
 		return result;
 	}
 
 	unsigned Size() const
 	{
 		unsigned size = 0;
-		check((*static_cast<D const *>(this))->get_Size(&size));
+		check(static_cast<IMapView<K, V> const &>(static_cast<D const &>(*this))->get_Size(&size));
 		return size;
 	}
 
 	bool HasKey(K const & key) const
 	{
 		boolean found = false;
-		check((*static_cast<D const *>(this))->abi_HasKey(abi(key), &found));
+		check(static_cast<IMapView<K, V> const &>(static_cast<D const &>(*this))->abi_HasKey(abi(key), &found));
 		return 0 != found;
 	}
 
 	void Split(IMapView<K, V> & firstPartition, IMapView<K, V> & secondPartition)
 	{
-		check((*static_cast<D const *>(this))->abi_Split(set(&firstPartition), set(&secondPartition)));
+		check(static_cast<IMapView<K, V> const &>(static_cast<D const &>(*this))->abi_Split(set(firstPartition), set(secondPartition)));
 	}
 };
 
@@ -1857,46 +1857,46 @@ struct impl_IMap
 	V Lookup(K const & key) const
 	{
 		V result = Argument<V>::Empty();
-		check((*static_cast<D const *>(this))->abi_Lookup(abi(key), abi(&result)));
+		check(static_cast<IMap<K, V> const &>(static_cast<D const &>(*this))->abi_Lookup(abi(key), abi(&result)));
 		return result;
 	}
 
 	unsigned Size() const
 	{
 		unsigned size = 0;
-		check((*static_cast<D const *>(this))->get_Size(&size));
+		check(static_cast<IMap<K, V> const &>(static_cast<D const &>(*this))->get_Size(&size));
 		return size;
 	}
 
 	bool HasKey(K const & key) const
 	{
 		boolean found = false;
-		check((*static_cast<D const *>(this))->abi_HasKey(abi(key), &found));
+		check(static_cast<IMap<K, V> const &>(static_cast<D const &>(*this))->abi_HasKey(abi(key), &found));
 		return 0 != found;
 	}
 
 	IMapView<K, V> GetView() const
 	{
 		IMapView<K, V> view;
-		check((*static_cast<D const *>(this))->abi_GetView(set(view)));
+		check(static_cast<IMap<K, V> const &>(static_cast<D const &>(*this))->abi_GetView(set(view)));
 		return view;
 	}
 
 	bool Insert(K const & key, V const & value) const
 	{
 		boolean replaced = false;
-		check((*static_cast<D const *>(this))->abi_Insert(abi(key), abi(value), &replaced));
+		check(static_cast<IMap<K, V> const &>(static_cast<D const &>(*this))->abi_Insert(abi(key), abi(value), &replaced));
 		return 0 != replaced;
 	}
 
 	void Remove(K const & key) const
 	{
-		check((*static_cast<D const *>(this))->abi_Remove(abi(key)));
+		check(static_cast<IMap<K, V> const &>(static_cast<D const &>(*this))->abi_Remove(abi(key)));
 	}
 
 	void Clear() const
 	{
-		check((*static_cast<D const *>(this))->abi_Clear());
+		check(static_cast<IMap<K, V> const &>(static_cast<D const &>(*this))->abi_Clear());
 	}
 };
 
@@ -1906,14 +1906,14 @@ struct impl_IMapChangedEventArgs
 	CollectionChange CollectionChange() const
 	{
 		CollectionChange value = {};
-		check((*static_cast<D const *>(this))->get_CollectionChange(&value));
+		check(static_cast<D const &>(*this)->get_CollectionChange(&value));
 		return value;
 	}
 
 	K Key() const
 	{
 		K result = Argument<K>::Empty();
-		check((*static_cast<D const *>(this))->get_Key(abi(&result)));
+		check(static_cast<D const &>(*this)->get_Key(abi(&result)));
 		return result;
 	}
 };
@@ -1923,7 +1923,7 @@ struct impl_IMapChangedEventHandler
 {
 	void Invoke(IObservableMap<K, V> const & sender, IMapChangedEventArgs<K> const & args) const
 	{
-		check((*static_cast<D const *>(this))->abi_Invoke(get(sender), get(args)));
+		check(static_cast<D const &>(*this)->abi_Invoke(get(sender), get(args)));
 	}
 };
 
@@ -1933,7 +1933,7 @@ struct impl_IObservableMap
 	EventRegistrationToken MapChanged(IMapChangedEventHandler<K, V> const & handler) const
 	{
 		EventRegistrationToken cookie = {};
-		check((*static_cast<D const *>(this))->add_MapChanged(get(handler), &cookie));
+		check(static_cast<IObservableMap<K, V> const &>(static_cast<D const &>(*this))->add_MapChanged(get(handler), &cookie));
 		return cookie;
 	}
 
@@ -1944,7 +1944,7 @@ struct impl_IObservableMap
 
 	void MapChanged(EventRegistrationToken const cookie) const
 	{
-		check((*static_cast<D const *>(this))->remove_MapChanged(cookie));
+		check(static_cast<IObservableMap<K, V> const &>(static_cast<D const &>(*this))->remove_MapChanged(cookie));
 	}
 };
 
@@ -1953,7 +1953,7 @@ struct impl_IVectorChangedEventHandler
 {
 	void Invoke(IObservableVector<T> const & sender, IVectorChangedEventArgs const & args) const
 	{
-		check((*static_cast<D const *>(this))->abi_Invoke(get(sender), get(args)));
+		check(static_cast<D const &>(*this)->abi_Invoke(get(sender), get(args)));
 	}
 };
 
@@ -1963,7 +1963,7 @@ struct impl_IObservableVector
 	EventRegistrationToken VectorChanged(IVectorChangedEventHandler<T> const & handler) const
 	{
 		EventRegistrationToken cookie = {};
-		check((*static_cast<D const *>(this))->add_VectorChanged(get(handler), &cookie));
+		check(static_cast<IObservableVector<T> const &>(static_cast<D const &>(*this))->add_VectorChanged(get(handler), &cookie));
 		return cookie;
 	}
 
@@ -1974,7 +1974,7 @@ struct impl_IObservableVector
 
 	void VectorChanged(EventRegistrationToken const cookie) const
 	{
-		check((*static_cast<D const *>(this))->remove_VectorChanged(cookie));
+		check(static_cast<IObservableVector<T> const &>(static_cast<D const &>(*this))->remove_VectorChanged(cookie));
 	}
 };
 

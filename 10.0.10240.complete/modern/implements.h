@@ -1,4 +1,4 @@
-// Modern v1.23 - http://moderncpp.com
+// Modern v1.25 - http://moderncpp.com
 // Copyright (c) 2015 Kenny Kerr
 
 #pragma once
@@ -88,13 +88,13 @@ class __declspec(novtable) Implements : public Interfaces ...
 	}
 
 	template <int = 0>
-	void * FindInterface(GUID const &) const noexcept
+	void * FindInterface(GUID const &) noexcept
 	{
 		return nullptr;
 	}
 
 	template <typename First, typename ... Rest>
-	void * FindInterface(GUID const & id) const noexcept
+	void * FindInterface(GUID const & id) noexcept
 	{
 		if (id == __uuidof(First))
 		{

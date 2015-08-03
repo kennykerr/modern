@@ -1,4 +1,4 @@
-// Modern v1.23 - http://moderncpp.com
+// Modern v1.25 - http://moderncpp.com
 // Copyright (c) 2015 Kenny Kerr
 
 #pragma once
@@ -75,7 +75,7 @@ public:
 
 	NoAddRefRelease<T> * operator->() const noexcept
 	{
-		return static_cast<RemoveAddRefRelease<T> *>(m_ptr);
+		return static_cast<NoAddRefRelease<T> *>(m_ptr);
 	}
 
 	template <typename T>

@@ -1,4 +1,4 @@
-// Modern v1.23 - http://moderncpp.com
+// Modern v1.25 - http://moderncpp.com
 // Copyright (c) 2015 Kenny Kerr
 
 #pragma once
@@ -1684,6 +1684,20 @@ protected:
 	}
 };
 
+template <typename T> struct RoutedEventArgsT :
+	Overrides<::IInspectable>,
+	Requires<T, Windows::UI::Xaml::IRoutedEventArgs>
+{
+	using Composable = Windows::UI::Xaml::IRoutedEventArgs;
+
+protected:
+
+	RoutedEventArgsT()
+	{
+		GetActivationFactory<RoutedEventArgs, IRoutedEventArgsFactory>().CreateInstance(Lease<Modern::Windows::IInspectable>(this), m_inner);
+	}
+};
+
 template <typename T> struct FrameworkElementT :
 	Overrides<Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
 	Requires<T, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
@@ -1712,17 +1726,17 @@ protected:
 	}
 };
 
-template <typename T> struct RoutedEventArgsT :
+template <typename T> struct FrameworkTemplateT :
 	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::IRoutedEventArgs>
+	Requires<T, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IFrameworkTemplate>
 {
-	using Composable = Windows::UI::Xaml::IRoutedEventArgs;
+	using Composable = Windows::UI::Xaml::IFrameworkTemplate;
 
 protected:
 
-	RoutedEventArgsT()
+	FrameworkTemplateT()
 	{
-		GetActivationFactory<RoutedEventArgs, IRoutedEventArgsFactory>().CreateInstance(Lease<Modern::Windows::IInspectable>(this), m_inner);
+		GetActivationFactory<FrameworkTemplate, IFrameworkTemplateFactory>().CreateInstance(Lease<Modern::Windows::IInspectable>(this), m_inner);
 	}
 };
 
@@ -1803,20 +1817,6 @@ protected:
 	ApplicationT()
 	{
 		GetActivationFactory<Application, IApplicationFactory>().CreateInstance(Lease<Modern::Windows::IInspectable>(this), m_inner);
-	}
-};
-
-template <typename T> struct FrameworkTemplateT :
-	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IFrameworkTemplate>
-{
-	using Composable = Windows::UI::Xaml::IFrameworkTemplate;
-
-protected:
-
-	FrameworkTemplateT()
-	{
-		GetActivationFactory<FrameworkTemplate, IFrameworkTemplateFactory>().CreateInstance(Lease<Modern::Windows::IInspectable>(this), m_inner);
 	}
 };
 
@@ -2780,6 +2780,48 @@ protected:
 	}
 };
 
+template <typename T> struct ContentPresenterT :
+	Overrides<Windows::UI::Xaml::Controls::IContentPresenterOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::IContentPresenter, Windows::UI::Xaml::Controls::IContentPresenter2, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
+{
+	using Composable = Windows::UI::Xaml::Controls::IContentPresenter;
+
+protected:
+
+	ContentPresenterT()
+	{
+		GetActivationFactory<ContentPresenter, IContentPresenterFactory>().CreateInstance(Lease<Modern::Windows::IInspectable>(this), m_inner);
+	}
+};
+
+template <typename T> struct ContentControlT :
+	Overrides<Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IContentControlOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
+{
+	using Composable = Windows::UI::Xaml::Controls::IContentControl;
+
+protected:
+
+	ContentControlT()
+	{
+		GetActivationFactory<ContentControl, IContentControlFactory>().CreateInstance(Lease<Modern::Windows::IInspectable>(this), m_inner);
+	}
+};
+
+template <typename T> struct ItemsControlT :
+	Overrides<Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IItemsControlOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IItemsControl, Windows::UI::Xaml::Controls::IItemsControl2, Windows::UI::Xaml::Controls::IItemContainerMapping, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
+{
+	using Composable = Windows::UI::Xaml::Controls::IItemsControl;
+
+protected:
+
+	ItemsControlT()
+	{
+		GetActivationFactory<ItemsControl, IItemsControlFactory>().CreateInstance(Lease<Modern::Windows::IInspectable>(this), m_inner);
+	}
+};
+
 template <typename T> struct DataTemplateSelectorT :
 	Overrides<Windows::UI::Xaml::Controls::IDataTemplateSelectorOverridesT<T>, Windows::UI::Xaml::Controls::IDataTemplateSelectorOverrides2T<T>>,
 	Requires<T, Windows::UI::Xaml::Controls::IDataTemplateSelector, Windows::UI::Xaml::Controls::IDataTemplateSelector2>
@@ -2875,20 +2917,6 @@ protected:
 	SelectionChangedEventArgsT(Windows::Foundation::Collections::IVector<IInspectable> const & removedItems, Windows::Foundation::Collections::IVector<IInspectable> const & addedItems)
 	{
 		GetActivationFactory<SelectionChangedEventArgs, ISelectionChangedEventArgsFactory>().CreateInstanceWithRemovedItemsAndAddedItems(removedItems, addedItems, Lease<Modern::Windows::IInspectable>(this), m_inner);
-	}
-};
-
-template <typename T> struct ContentPresenterT :
-	Overrides<Windows::UI::Xaml::Controls::IContentPresenterOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
-	Requires<T, Windows::UI::Xaml::Controls::IContentPresenter, Windows::UI::Xaml::Controls::IContentPresenter2, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
-{
-	using Composable = Windows::UI::Xaml::Controls::IContentPresenter;
-
-protected:
-
-	ContentPresenterT()
-	{
-		GetActivationFactory<ContentPresenter, IContentPresenterFactory>().CreateInstance(Lease<Modern::Windows::IInspectable>(this), m_inner);
 	}
 };
 
@@ -3018,23 +3046,9 @@ protected:
 	}
 };
 
-template <typename T> struct ContentControlT :
-	Overrides<Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IContentControlOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
-	Requires<T, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
-{
-	using Composable = Windows::UI::Xaml::Controls::IContentControl;
-
-protected:
-
-	ContentControlT()
-	{
-		GetActivationFactory<ContentControl, IContentControlFactory>().CreateInstance(Lease<Modern::Windows::IInspectable>(this), m_inner);
-	}
-};
-
 template <typename T> struct ComboBoxItemT :
-	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelectorItem, Windows::UI::Xaml::Controls::IComboBoxItem>
+	Overrides<Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IContentControlOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelectorItem, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IComboBoxItem, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
 {
 	using Composable = Windows::UI::Xaml::Controls::IComboBoxItem;
 
@@ -3061,8 +3075,8 @@ protected:
 };
 
 template <typename T> struct FlipViewItemT :
-	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelectorItem, Windows::UI::Xaml::Controls::IFlipViewItem>
+	Overrides<Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IContentControlOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelectorItem, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IFlipViewItem, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
 {
 	using Composable = Windows::UI::Xaml::Controls::IFlipViewItem;
 
@@ -3075,8 +3089,8 @@ protected:
 };
 
 template <typename T> struct GridViewItemT :
-	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelectorItem, Windows::UI::Xaml::Controls::IGridViewItem>
+	Overrides<Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IContentControlOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelectorItem, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IGridViewItem, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
 {
 	using Composable = Windows::UI::Xaml::Controls::IGridViewItem;
 
@@ -3102,23 +3116,9 @@ protected:
 	}
 };
 
-template <typename T> struct ItemsControlT :
-	Overrides<Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IItemsControlOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
-	Requires<T, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IItemsControl, Windows::UI::Xaml::Controls::IItemsControl2, Windows::UI::Xaml::Controls::IItemContainerMapping, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
-{
-	using Composable = Windows::UI::Xaml::Controls::IItemsControl;
-
-protected:
-
-	ItemsControlT()
-	{
-		GetActivationFactory<ItemsControl, IItemsControlFactory>().CreateInstance(Lease<Modern::Windows::IInspectable>(this), m_inner);
-	}
-};
-
 template <typename T> struct ListBoxItemT :
-	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelectorItem, Windows::UI::Xaml::Controls::IListBoxItem>
+	Overrides<Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IContentControlOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelectorItem, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IListBoxItem, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
 {
 	using Composable = Windows::UI::Xaml::Controls::IListBoxItem;
 
@@ -3131,8 +3131,8 @@ protected:
 };
 
 template <typename T> struct ListViewItemT :
-	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelectorItem, Windows::UI::Xaml::Controls::IListViewItem>
+	Overrides<Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IContentControlOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelectorItem, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IListViewItem, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
 {
 	using Composable = Windows::UI::Xaml::Controls::IListViewItem;
 
@@ -3215,8 +3215,8 @@ protected:
 };
 
 template <typename T> struct ButtonT :
-	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::IButton, Windows::UI::Xaml::Controls::IButtonWithFlyout>
+	Overrides<Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IContentControlOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IButton, Windows::UI::Xaml::Controls::IButtonWithFlyout, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
 {
 	using Composable = Windows::UI::Xaml::Controls::IButton;
 
@@ -3229,8 +3229,8 @@ protected:
 };
 
 template <typename T> struct HyperlinkButtonT :
-	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::IHyperlinkButton>
+	Overrides<Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IContentControlOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IHyperlinkButton, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
 {
 	using Composable = Windows::UI::Xaml::Controls::IHyperlinkButton;
 
@@ -3271,8 +3271,8 @@ protected:
 };
 
 template <typename T> struct ComboBoxT :
-	Overrides<Windows::UI::Xaml::Controls::IComboBoxOverridesT<T>>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelector, Windows::UI::Xaml::Controls::IComboBox, Windows::UI::Xaml::Controls::IComboBox2>
+	Overrides<Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IItemsControlOverridesT<T>, Windows::UI::Xaml::Controls::IComboBoxOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelector, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IItemsControl, Windows::UI::Xaml::Controls::IItemsControl2, Windows::UI::Xaml::Controls::IItemContainerMapping, Windows::UI::Xaml::Controls::IComboBox, Windows::UI::Xaml::Controls::IComboBox2, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
 {
 	using Composable = Windows::UI::Xaml::Controls::IComboBox;
 
@@ -3285,8 +3285,8 @@ protected:
 };
 
 template <typename T> struct ListViewBaseT :
-	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelector, Windows::UI::Xaml::Controls::IListViewBase, Windows::UI::Xaml::Controls::IListViewBase2, Windows::UI::Xaml::Controls::ISemanticZoomInformation>
+	Overrides<Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IItemsControlOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelector, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IItemsControl, Windows::UI::Xaml::Controls::IItemsControl2, Windows::UI::Xaml::Controls::IItemContainerMapping, Windows::UI::Xaml::Controls::IListViewBase, Windows::UI::Xaml::Controls::IListViewBase2, Windows::UI::Xaml::Controls::ISemanticZoomInformation, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
 {
 	using Composable = Windows::UI::Xaml::Controls::IListViewBase;
 
@@ -3299,8 +3299,8 @@ protected:
 };
 
 template <typename T> struct FlipViewT :
-	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelector, Windows::UI::Xaml::Controls::IFlipView, Windows::UI::Xaml::Controls::IFlipView2>
+	Overrides<Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IItemsControlOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelector, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IItemsControl, Windows::UI::Xaml::Controls::IItemsControl2, Windows::UI::Xaml::Controls::IItemContainerMapping, Windows::UI::Xaml::Controls::IFlipView, Windows::UI::Xaml::Controls::IFlipView2, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
 {
 	using Composable = Windows::UI::Xaml::Controls::IFlipView;
 
@@ -3313,8 +3313,8 @@ protected:
 };
 
 template <typename T> struct GridViewT :
-	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelector, Windows::UI::Xaml::Controls::IListViewBase, Windows::UI::Xaml::Controls::IListViewBase2, Windows::UI::Xaml::Controls::ISemanticZoomInformation, Windows::UI::Xaml::Controls::IGridView>
+	Overrides<Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IItemsControlOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelector, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IItemsControl, Windows::UI::Xaml::Controls::IItemsControl2, Windows::UI::Xaml::Controls::IItemContainerMapping, Windows::UI::Xaml::Controls::IListViewBase, Windows::UI::Xaml::Controls::IListViewBase2, Windows::UI::Xaml::Controls::ISemanticZoomInformation, Windows::UI::Xaml::Controls::IGridView, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
 {
 	using Composable = Windows::UI::Xaml::Controls::IGridView;
 
@@ -3327,8 +3327,8 @@ protected:
 };
 
 template <typename T> struct ListBoxT :
-	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelector, Windows::UI::Xaml::Controls::IListBox>
+	Overrides<Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IItemsControlOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelector, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IItemsControl, Windows::UI::Xaml::Controls::IItemsControl2, Windows::UI::Xaml::Controls::IItemContainerMapping, Windows::UI::Xaml::Controls::IListBox, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
 {
 	using Composable = Windows::UI::Xaml::Controls::IListBox;
 
@@ -3341,8 +3341,8 @@ protected:
 };
 
 template <typename T> struct ListViewT :
-	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelector, Windows::UI::Xaml::Controls::IListViewBase, Windows::UI::Xaml::Controls::IListViewBase2, Windows::UI::Xaml::Controls::ISemanticZoomInformation, Windows::UI::Xaml::Controls::IListView>
+	Overrides<Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IItemsControlOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelector, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IItemsControl, Windows::UI::Xaml::Controls::IItemsControl2, Windows::UI::Xaml::Controls::IItemContainerMapping, Windows::UI::Xaml::Controls::IListViewBase, Windows::UI::Xaml::Controls::IListViewBase2, Windows::UI::Xaml::Controls::ISemanticZoomInformation, Windows::UI::Xaml::Controls::IListView, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
 {
 	using Composable = Windows::UI::Xaml::Controls::IListView;
 
@@ -3355,8 +3355,8 @@ protected:
 };
 
 template <typename T> struct CheckBoxT :
-	Overrides<Windows::UI::Xaml::Controls::Primitives::IToggleButtonOverridesT<T>>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::Primitives::IToggleButton, Windows::UI::Xaml::Controls::ICheckBox>
+	Overrides<Windows::UI::Xaml::Controls::Primitives::IToggleButtonOverridesT<T>, Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IContentControlOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::Primitives::IToggleButton, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::ICheckBox, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
 {
 	using Composable = Windows::UI::Xaml::Controls::ICheckBox;
 
@@ -3369,8 +3369,8 @@ protected:
 };
 
 template <typename T> struct RadioButtonT :
-	Overrides<Windows::UI::Xaml::Controls::Primitives::IToggleButtonOverridesT<T>>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::Primitives::IToggleButton, Windows::UI::Xaml::Controls::IRadioButton>
+	Overrides<Windows::UI::Xaml::Controls::Primitives::IToggleButtonOverridesT<T>, Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IContentControlOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::Primitives::IToggleButton, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IRadioButton, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
 {
 	using Composable = Windows::UI::Xaml::Controls::IRadioButton;
 
@@ -3397,8 +3397,8 @@ protected:
 };
 
 template <typename T> struct AppBarButtonT :
-	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::IButton, Windows::UI::Xaml::Controls::IButtonWithFlyout, Windows::UI::Xaml::Controls::IAppBarButton, Windows::UI::Xaml::Controls::ICommandBarElement>
+	Overrides<Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IContentControlOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IButton, Windows::UI::Xaml::Controls::IButtonWithFlyout, Windows::UI::Xaml::Controls::IAppBarButton, Windows::UI::Xaml::Controls::ICommandBarElement, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
 {
 	using Composable = Windows::UI::Xaml::Controls::IAppBarButton;
 
@@ -3425,8 +3425,8 @@ protected:
 };
 
 template <typename T> struct AppBarToggleButtonT :
-	Overrides<Windows::UI::Xaml::Controls::Primitives::IToggleButtonOverridesT<T>>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::Primitives::IToggleButton, Windows::UI::Xaml::Controls::IAppBarToggleButton, Windows::UI::Xaml::Controls::ICommandBarElement>
+	Overrides<Windows::UI::Xaml::Controls::Primitives::IToggleButtonOverridesT<T>, Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IContentControlOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::Primitives::IToggleButton, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IAppBarToggleButton, Windows::UI::Xaml::Controls::ICommandBarElement, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
 {
 	using Composable = Windows::UI::Xaml::Controls::IAppBarToggleButton;
 
@@ -3654,7 +3654,7 @@ protected:
 
 template <typename T> struct DragCompletedEventArgsT :
 	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::IDragCompletedEventArgs>
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::IDragCompletedEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	using Composable = Windows::UI::Xaml::Controls::Primitives::IDragCompletedEventArgs;
 
@@ -3668,7 +3668,7 @@ protected:
 
 template <typename T> struct DragDeltaEventArgsT :
 	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::IDragDeltaEventArgs>
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::IDragDeltaEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	using Composable = Windows::UI::Xaml::Controls::Primitives::IDragDeltaEventArgs;
 
@@ -3682,7 +3682,7 @@ protected:
 
 template <typename T> struct DragStartedEventArgsT :
 	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::IDragStartedEventArgs>
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::IDragStartedEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	using Composable = Windows::UI::Xaml::Controls::Primitives::IDragStartedEventArgs;
 
@@ -3695,8 +3695,8 @@ protected:
 };
 
 template <typename T> struct CarouselPanelT :
-	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::ICarouselPanel, Windows::UI::Xaml::Controls::Primitives::IScrollSnapPointsInfo>
+	Overrides<Windows::UI::Xaml::Controls::IVirtualizingPanelOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::ICarouselPanel, Windows::UI::Xaml::Controls::Primitives::IScrollSnapPointsInfo, Windows::UI::Xaml::Controls::IPanel, Windows::UI::Xaml::Controls::IVirtualizingPanel, Windows::UI::Xaml::Controls::IVirtualizingPanelProtected, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
 {
 	using Composable = Windows::UI::Xaml::Controls::Primitives::ICarouselPanel;
 
@@ -3709,8 +3709,8 @@ protected:
 };
 
 template <typename T> struct GridViewItemPresenterT :
-	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::IGridViewItemPresenter>
+	Overrides<Windows::UI::Xaml::Controls::IContentPresenterOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::IGridViewItemPresenter, Windows::UI::Xaml::Controls::IContentPresenter, Windows::UI::Xaml::Controls::IContentPresenter2, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
 {
 	using Composable = Windows::UI::Xaml::Controls::Primitives::IGridViewItemPresenter;
 
@@ -3723,8 +3723,8 @@ protected:
 };
 
 template <typename T> struct ListViewItemPresenterT :
-	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::IListViewItemPresenter>
+	Overrides<Windows::UI::Xaml::Controls::IContentPresenterOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::IListViewItemPresenter, Windows::UI::Xaml::Controls::IContentPresenter, Windows::UI::Xaml::Controls::IContentPresenter2, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
 {
 	using Composable = Windows::UI::Xaml::Controls::Primitives::IListViewItemPresenter;
 
@@ -3737,8 +3737,8 @@ protected:
 };
 
 template <typename T> struct SelectorItemT :
-	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelectorItem>
+	Overrides<Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IContentControlOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::ISelectorItem, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
 {
 	using Composable = Windows::UI::Xaml::Controls::Primitives::ISelectorItem;
 
@@ -3751,8 +3751,8 @@ protected:
 };
 
 template <typename T> struct ButtonBaseT :
-	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::IButtonBase>
+	Overrides<Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IContentControlOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
 {
 	using Composable = Windows::UI::Xaml::Controls::Primitives::IButtonBase;
 
@@ -3779,8 +3779,8 @@ protected:
 };
 
 template <typename T> struct ToggleButtonT :
-	Overrides<Windows::UI::Xaml::Controls::Primitives::IToggleButtonOverridesT<T>>,
-	Requires<T, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::Primitives::IToggleButton>
+	Overrides<Windows::UI::Xaml::Controls::Primitives::IToggleButtonOverridesT<T>, Windows::UI::Xaml::Controls::IControlOverridesT<T>, Windows::UI::Xaml::Controls::IContentControlOverridesT<T>, Windows::UI::Xaml::IUIElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverridesT<T>, Windows::UI::Xaml::IFrameworkElementOverrides2T<T>>,
+	Requires<T, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::Primitives::IToggleButton, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlProtected, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2>
 {
 	using Composable = Windows::UI::Xaml::Controls::Primitives::IToggleButton;
 
@@ -3923,7 +3923,7 @@ namespace Modern { namespace Windows { namespace UI { namespace Xaml { namespace
 
 template <typename T> struct ManipulationStartedRoutedEventArgsT :
 	Overrides<::IInspectable>,
-	Requires<T, Windows::UI::Xaml::Input::IManipulationStartedRoutedEventArgs>
+	Requires<T, Windows::UI::Xaml::Input::IManipulationStartedRoutedEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	using Composable = Windows::UI::Xaml::Input::IManipulationStartedRoutedEventArgs;
 

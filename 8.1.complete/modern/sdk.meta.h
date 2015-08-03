@@ -1,4 +1,4 @@
-// Modern v1.23 - http://moderncpp.com
+// Modern v1.25 - http://moderncpp.com
 // Copyright (c) 2015 Kenny Kerr
 
 #pragma once
@@ -2780,16 +2780,18 @@ struct IVisualTransitionFactory;
 struct IWindow;
 struct IWindowStatics;
 struct IWindowCreatedEventArgs;
-struct UIElement;
 struct DependencyObject;
+struct UIElement;
+struct RoutedEventArgs;
 struct DependencyProperty;
 struct Window;
+struct TriggerAction;
 struct FrameworkElement;
 struct PropertyPath;
 struct DataTemplate;
 struct DragEventArgs;
-struct RoutedEventArgs;
 struct Style;
+struct FrameworkTemplate;
 struct DependencyPropertyChangedEventArgs;
 struct ApplicationInitializationCallbackParams;
 struct CornerRadiusHelper;
@@ -2814,7 +2816,6 @@ struct ExceptionRoutedEventArgs;
 struct WindowCreatedEventArgs;
 struct Application;
 struct TriggerCollection;
-struct FrameworkTemplate;
 struct FrameworkView;
 struct FrameworkViewSource;
 struct MediaFailedRoutedEventArgs;
@@ -2823,7 +2824,6 @@ struct SetterBase;
 struct Setter;
 struct SetterBaseCollection;
 struct SizeChangedEventArgs;
-struct TriggerAction;
 struct TriggerBase;
 struct EventTrigger;
 struct VisualState;
@@ -3489,6 +3489,10 @@ struct IControlStatics;
 struct IControlFactory;
 struct IControlTemplate;
 struct Control;
+struct VirtualizingPanel;
+struct ContentPresenter;
+struct ContentControl;
+struct ItemsControl;
 struct BackClickEventArgs;
 struct DragItemsStartingEventArgs;
 struct NotifyEventArgs;
@@ -3537,7 +3541,6 @@ struct TextChangedEventArgs;
 struct ItemsPanelTemplate;
 struct Border;
 struct CaptureElement;
-struct ContentPresenter;
 struct Image;
 struct Panel;
 struct Canvas;
@@ -3551,7 +3554,6 @@ struct StackPanel;
 struct TextBlock;
 struct VariableSizedWrapGrid;
 struct Viewbox;
-struct VirtualizingPanel;
 struct VirtualizingStackPanel;
 struct IconElement;
 struct BitmapIcon;
@@ -3565,14 +3567,12 @@ struct SymbolIcon;
 struct WebView;
 struct WrapGrid;
 struct WebViewBrush;
-struct ContentControl;
 struct ComboBoxItem;
 struct DatePicker;
 struct FlipViewItem;
 struct GridViewItem;
 struct GroupItem;
 struct SemanticZoom;
-struct ItemsControl;
 struct ListBoxItem;
 struct ListViewItem;
 struct PasswordBox;
@@ -51193,6 +51193,14 @@ template <> struct Traits<Windows::UI::Xaml::Automation::Provider::IRawElementPr
 	static constexpr unsigned NameLength = 61;
 };
 
+template <> struct Traits<Windows::UI::Xaml::DependencyObject>
+{
+	using Abi = ABI::Windows::UI::Xaml::DependencyObject;
+	using Default = Windows::UI::Xaml::IDependencyObject;
+	static constexpr wchar_t const * Name() noexcept { return L"Windows.UI.Xaml.DependencyObject"; }
+	static constexpr unsigned NameLength = 32;
+};
+
 template <> struct Traits<Windows::UI::Xaml::UIElement>
 {
 	using Abi = ABI::Windows::UI::Xaml::UIElement;
@@ -51353,6 +51361,14 @@ template <> struct Traits<Windows::UI::Xaml::Input::TappedRoutedEventArgs>
 	static constexpr unsigned NameLength = 43;
 };
 
+template <> struct Traits<Windows::UI::Xaml::RoutedEventArgs>
+{
+	using Abi = ABI::Windows::UI::Xaml::RoutedEventArgs;
+	using Default = Windows::UI::Xaml::IRoutedEventArgs;
+	static constexpr wchar_t const * Name() noexcept { return L"Windows.UI.Xaml.RoutedEventArgs"; }
+	static constexpr unsigned NameLength = 31;
+};
+
 template <> struct Traits<Windows::UI::Xaml::Media::Media3D::Matrix3DHelper>
 {
 	using Abi = ABI::Windows::UI::Xaml::Media::Media3D::Matrix3DHelper;
@@ -51367,14 +51383,6 @@ template <> struct Traits<Windows::UI::Xaml::Controls::Primitives::Popup>
 	using Default = Windows::UI::Xaml::Controls::Primitives::IPopup;
 	static constexpr wchar_t const * Name() noexcept { return L"Windows.UI.Xaml.Controls.Primitives.Popup"; }
 	static constexpr unsigned NameLength = 41;
-};
-
-template <> struct Traits<Windows::UI::Xaml::DependencyObject>
-{
-	using Abi = ABI::Windows::UI::Xaml::DependencyObject;
-	using Default = Windows::UI::Xaml::IDependencyObject;
-	static constexpr wchar_t const * Name() noexcept { return L"Windows.UI.Xaml.DependencyObject"; }
-	static constexpr unsigned NameLength = 32;
 };
 
 template <> struct Traits<Windows::UI::Xaml::DependencyProperty>
@@ -52393,6 +52401,14 @@ template <> struct Traits<Windows::UI::Xaml::Media::Animation::RepositionThemeTr
 	static constexpr unsigned NameLength = 57;
 };
 
+template <> struct Traits<Windows::UI::Xaml::TriggerAction>
+{
+	using Abi = ABI::Windows::UI::Xaml::TriggerAction;
+	using Default = Windows::UI::Xaml::ITriggerAction;
+	static constexpr wchar_t const * Name() noexcept { return L"Windows.UI.Xaml.TriggerAction"; }
+	static constexpr unsigned NameLength = 29;
+};
+
 template <> struct Traits<Windows::UI::Xaml::Controls::Control>
 {
 	using Abi = ABI::Windows::UI::Xaml::Controls::Control;
@@ -52647,6 +52663,38 @@ template <> struct Traits<Windows::UI::Xaml::Controls::Primitives::LayoutInforma
 	using Default = Windows::UI::Xaml::Controls::Primitives::ILayoutInformation;
 	static constexpr wchar_t const * Name() noexcept { return L"Windows.UI.Xaml.Controls.Primitives.LayoutInformation"; }
 	static constexpr unsigned NameLength = 53;
+};
+
+template <> struct Traits<Windows::UI::Xaml::Controls::VirtualizingPanel>
+{
+	using Abi = ABI::Windows::UI::Xaml::Controls::VirtualizingPanel;
+	using Default = Windows::UI::Xaml::Controls::IVirtualizingPanel;
+	static constexpr wchar_t const * Name() noexcept { return L"Windows.UI.Xaml.Controls.VirtualizingPanel"; }
+	static constexpr unsigned NameLength = 42;
+};
+
+template <> struct Traits<Windows::UI::Xaml::Controls::ContentPresenter>
+{
+	using Abi = ABI::Windows::UI::Xaml::Controls::ContentPresenter;
+	using Default = Windows::UI::Xaml::Controls::IContentPresenter;
+	static constexpr wchar_t const * Name() noexcept { return L"Windows.UI.Xaml.Controls.ContentPresenter"; }
+	static constexpr unsigned NameLength = 41;
+};
+
+template <> struct Traits<Windows::UI::Xaml::Controls::ContentControl>
+{
+	using Abi = ABI::Windows::UI::Xaml::Controls::ContentControl;
+	using Default = Windows::UI::Xaml::Controls::IContentControl;
+	static constexpr wchar_t const * Name() noexcept { return L"Windows.UI.Xaml.Controls.ContentControl"; }
+	static constexpr unsigned NameLength = 39;
+};
+
+template <> struct Traits<Windows::UI::Xaml::Controls::ItemsControl>
+{
+	using Abi = ABI::Windows::UI::Xaml::Controls::ItemsControl;
+	using Default = Windows::UI::Xaml::Controls::IItemsControl;
+	static constexpr wchar_t const * Name() noexcept { return L"Windows.UI.Xaml.Controls.ItemsControl"; }
+	static constexpr unsigned NameLength = 37;
 };
 
 template <> struct Traits<Windows::UI::Xaml::Interop::NotifyCollectionChangedEventArgs>
@@ -53321,14 +53369,6 @@ template <> struct Traits<Windows::UI::Xaml::DragEventArgs>
 	static constexpr unsigned NameLength = 29;
 };
 
-template <> struct Traits<Windows::UI::Xaml::RoutedEventArgs>
-{
-	using Abi = ABI::Windows::UI::Xaml::RoutedEventArgs;
-	using Default = Windows::UI::Xaml::IRoutedEventArgs;
-	static constexpr wchar_t const * Name() noexcept { return L"Windows.UI.Xaml.RoutedEventArgs"; }
-	static constexpr unsigned NameLength = 31;
-};
-
 template <> struct Traits<Windows::UI::Xaml::Style>
 {
 	using Abi = ABI::Windows::UI::Xaml::Style;
@@ -53721,14 +53761,6 @@ template <> struct Traits<Windows::UI::Xaml::Controls::CaptureElement>
 	static constexpr unsigned NameLength = 39;
 };
 
-template <> struct Traits<Windows::UI::Xaml::Controls::ContentPresenter>
-{
-	using Abi = ABI::Windows::UI::Xaml::Controls::ContentPresenter;
-	using Default = Windows::UI::Xaml::Controls::IContentPresenter;
-	static constexpr wchar_t const * Name() noexcept { return L"Windows.UI.Xaml.Controls.ContentPresenter"; }
-	static constexpr unsigned NameLength = 41;
-};
-
 template <> struct Traits<Windows::UI::Xaml::Controls::Image>
 {
 	using Abi = ABI::Windows::UI::Xaml::Controls::Image;
@@ -53831,14 +53863,6 @@ template <> struct Traits<Windows::UI::Xaml::Controls::Viewbox>
 	using Default = Windows::UI::Xaml::Controls::IViewbox;
 	static constexpr wchar_t const * Name() noexcept { return L"Windows.UI.Xaml.Controls.Viewbox"; }
 	static constexpr unsigned NameLength = 32;
-};
-
-template <> struct Traits<Windows::UI::Xaml::Controls::VirtualizingPanel>
-{
-	using Abi = ABI::Windows::UI::Xaml::Controls::VirtualizingPanel;
-	using Default = Windows::UI::Xaml::Controls::IVirtualizingPanel;
-	static constexpr wchar_t const * Name() noexcept { return L"Windows.UI.Xaml.Controls.VirtualizingPanel"; }
-	static constexpr unsigned NameLength = 42;
 };
 
 template <> struct Traits<Windows::UI::Xaml::Controls::VirtualizingStackPanel>
@@ -53945,14 +53969,6 @@ template <> struct Traits<Windows::UI::Xaml::Controls::WebViewBrush>
 	static constexpr unsigned NameLength = 37;
 };
 
-template <> struct Traits<Windows::UI::Xaml::Controls::ContentControl>
-{
-	using Abi = ABI::Windows::UI::Xaml::Controls::ContentControl;
-	using Default = Windows::UI::Xaml::Controls::IContentControl;
-	static constexpr wchar_t const * Name() noexcept { return L"Windows.UI.Xaml.Controls.ContentControl"; }
-	static constexpr unsigned NameLength = 39;
-};
-
 template <> struct Traits<Windows::UI::Xaml::Controls::ComboBoxItem>
 {
 	using Abi = ABI::Windows::UI::Xaml::Controls::ComboBoxItem;
@@ -53998,14 +54014,6 @@ template <> struct Traits<Windows::UI::Xaml::Controls::SemanticZoom>
 	using Abi = ABI::Windows::UI::Xaml::Controls::SemanticZoom;
 	using Default = Windows::UI::Xaml::Controls::ISemanticZoom;
 	static constexpr wchar_t const * Name() noexcept { return L"Windows.UI.Xaml.Controls.SemanticZoom"; }
-	static constexpr unsigned NameLength = 37;
-};
-
-template <> struct Traits<Windows::UI::Xaml::Controls::ItemsControl>
-{
-	using Abi = ABI::Windows::UI::Xaml::Controls::ItemsControl;
-	using Default = Windows::UI::Xaml::Controls::IItemsControl;
-	static constexpr wchar_t const * Name() noexcept { return L"Windows.UI.Xaml.Controls.ItemsControl"; }
 	static constexpr unsigned NameLength = 37;
 };
 
@@ -54359,6 +54367,14 @@ template <> struct Traits<Windows::UI::Xaml::Controls::ControlTemplate>
 	using Default = Windows::UI::Xaml::Controls::IControlTemplate;
 	static constexpr wchar_t const * Name() noexcept { return L"Windows.UI.Xaml.Controls.ControlTemplate"; }
 	static constexpr unsigned NameLength = 40;
+};
+
+template <> struct Traits<Windows::UI::Xaml::FrameworkTemplate>
+{
+	using Abi = ABI::Windows::UI::Xaml::FrameworkTemplate;
+	using Default = Windows::UI::Xaml::IFrameworkTemplate;
+	static constexpr wchar_t const * Name() noexcept { return L"Windows.UI.Xaml.FrameworkTemplate"; }
+	static constexpr unsigned NameLength = 33;
 };
 
 template <> struct Traits<Windows::UI::Xaml::Automation::Peers::AutomationPeer>
@@ -55065,14 +55081,6 @@ template <> struct Traits<Windows::UI::Xaml::TriggerCollection>
 	static constexpr unsigned NameLength = 33;
 };
 
-template <> struct Traits<Windows::UI::Xaml::FrameworkTemplate>
-{
-	using Abi = ABI::Windows::UI::Xaml::FrameworkTemplate;
-	using Default = Windows::UI::Xaml::IFrameworkTemplate;
-	static constexpr wchar_t const * Name() noexcept { return L"Windows.UI.Xaml.FrameworkTemplate"; }
-	static constexpr unsigned NameLength = 33;
-};
-
 template <> struct Traits<Windows::UI::Xaml::FrameworkView>
 {
 	using Abi = ABI::Windows::UI::Xaml::FrameworkView;
@@ -55135,14 +55143,6 @@ template <> struct Traits<Windows::UI::Xaml::SizeChangedEventArgs>
 	using Default = Windows::UI::Xaml::ISizeChangedEventArgs;
 	static constexpr wchar_t const * Name() noexcept { return L"Windows.UI.Xaml.SizeChangedEventArgs"; }
 	static constexpr unsigned NameLength = 36;
-};
-
-template <> struct Traits<Windows::UI::Xaml::TriggerAction>
-{
-	using Abi = ABI::Windows::UI::Xaml::TriggerAction;
-	using Default = Windows::UI::Xaml::ITriggerAction;
-	static constexpr wchar_t const * Name() noexcept { return L"Windows.UI.Xaml.TriggerAction"; }
-	static constexpr unsigned NameLength = 29;
 };
 
 template <> struct Traits<Windows::UI::Xaml::TriggerBase>
@@ -83650,6 +83650,12 @@ struct HtmlPrintDocumentSource :
 
 namespace Modern { namespace Windows { namespace UI { namespace Xaml {
 
+struct DependencyObject :
+	Windows::UI::Xaml::IDependencyObject
+{
+	DependencyObject(std::nullptr_t) noexcept {}
+};
+
 struct UIElement :
 	Windows::UI::Xaml::IUIElement,
 	Bases<UIElement, Windows::UI::Xaml::DependencyObject>,
@@ -83699,10 +83705,11 @@ struct UIElement :
 	static Windows::UI::Xaml::DependencyProperty PointerCapturesProperty();
 };
 
-struct DependencyObject :
-	Windows::UI::Xaml::IDependencyObject
+struct RoutedEventArgs :
+	Windows::UI::Xaml::IRoutedEventArgs
 {
-	DependencyObject(std::nullptr_t) noexcept {}
+	RoutedEventArgs(std::nullptr_t) noexcept {}
+	RoutedEventArgs();
 };
 
 struct DependencyProperty :
@@ -83723,9 +83730,17 @@ struct Window :
 	static Windows::UI::Xaml::Window Current();
 };
 
+struct TriggerAction :
+	Windows::UI::Xaml::ITriggerAction,
+	Bases<TriggerAction, Windows::UI::Xaml::DependencyObject>,
+	Requires<TriggerAction, Windows::UI::Xaml::IDependencyObject>
+{
+	TriggerAction(std::nullptr_t) noexcept {}
+};
+
 struct FrameworkElement :
 	Windows::UI::Xaml::IFrameworkElement,
-	Bases<FrameworkElement, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject>,
+	Bases<FrameworkElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement>,
 	Requires<FrameworkElement, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	FrameworkElement(std::nullptr_t) noexcept {}
@@ -83776,13 +83791,6 @@ struct DragEventArgs :
 	DragEventArgs(std::nullptr_t) noexcept {}
 };
 
-struct RoutedEventArgs :
-	Windows::UI::Xaml::IRoutedEventArgs
-{
-	RoutedEventArgs(std::nullptr_t) noexcept {}
-	RoutedEventArgs();
-};
-
 struct Style :
 	Windows::UI::Xaml::IStyle,
 	Bases<Style, Windows::UI::Xaml::DependencyObject>,
@@ -83791,6 +83799,14 @@ struct Style :
 	Style(std::nullptr_t) noexcept {}
 	Style();
 	Style(Windows::UI::Xaml::Interop::TypeName const & targetType);
+};
+
+struct FrameworkTemplate :
+	Windows::UI::Xaml::IFrameworkTemplate,
+	Bases<FrameworkTemplate, Windows::UI::Xaml::DependencyObject>,
+	Requires<FrameworkTemplate, Windows::UI::Xaml::IDependencyObject>
+{
+	FrameworkTemplate(std::nullptr_t) noexcept {}
 };
 
 struct DependencyPropertyChangedEventArgs :
@@ -84003,14 +84019,6 @@ struct TriggerCollection :
 	TriggerCollection(std::nullptr_t) noexcept {}
 };
 
-struct FrameworkTemplate :
-	Windows::UI::Xaml::IFrameworkTemplate,
-	Bases<FrameworkTemplate, Windows::UI::Xaml::DependencyObject>,
-	Requires<FrameworkTemplate, Windows::UI::Xaml::IDependencyObject>
-{
-	FrameworkTemplate(std::nullptr_t) noexcept {}
-};
-
 struct FrameworkView :
 	Windows::UI::Xaml::IFrameworkView,
 	Requires<FrameworkView, Windows::ApplicationModel::Core::IFrameworkView>
@@ -84075,14 +84083,6 @@ struct SizeChangedEventArgs :
 	Requires<SizeChangedEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	SizeChangedEventArgs(std::nullptr_t) noexcept {}
-};
-
-struct TriggerAction :
-	Windows::UI::Xaml::ITriggerAction,
-	Bases<TriggerAction, Windows::UI::Xaml::DependencyObject>,
-	Requires<TriggerAction, Windows::UI::Xaml::IDependencyObject>
-{
-	TriggerAction(std::nullptr_t) noexcept {}
 };
 
 struct TriggerBase :
@@ -85022,7 +85022,9 @@ struct ListViewItemDataAutomationPeer :
 namespace Modern { namespace Windows { namespace UI { namespace Xaml { namespace Automation { namespace Provider {
 
 struct IRawElementProviderSimple :
-	Windows::UI::Xaml::Automation::Provider::IIRawElementProviderSimple
+	Windows::UI::Xaml::Automation::Provider::IIRawElementProviderSimple,
+	Bases<IRawElementProviderSimple, Windows::UI::Xaml::DependencyObject>,
+	Requires<IRawElementProviderSimple, Windows::UI::Xaml::IDependencyObject>
 {
 	IRawElementProviderSimple(std::nullptr_t) noexcept {}
 };
@@ -85033,7 +85035,7 @@ namespace Modern { namespace Windows { namespace UI { namespace Xaml { namespace
 
 struct Control :
 	Windows::UI::Xaml::Controls::IControl,
-	Bases<Control, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement>,
+	Bases<Control, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement>,
 	Requires<Control, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	Control(std::nullptr_t) noexcept {}
@@ -85057,6 +85059,70 @@ struct Control :
 	static Windows::UI::Xaml::DependencyProperty BorderBrushProperty();
 	static Windows::UI::Xaml::DependencyProperty DefaultStyleKeyProperty();
 	static Windows::UI::Xaml::DependencyProperty FocusStateProperty();
+};
+
+struct VirtualizingPanel :
+	Windows::UI::Xaml::Controls::IVirtualizingPanel,
+	Bases<VirtualizingPanel, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Panel>,
+	Requires<VirtualizingPanel, Windows::UI::Xaml::Controls::IPanel, Windows::UI::Xaml::Controls::IVirtualizingPanelOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
+{
+	VirtualizingPanel(std::nullptr_t) noexcept {}
+};
+
+struct ContentPresenter :
+	Windows::UI::Xaml::Controls::IContentPresenter,
+	Bases<ContentPresenter, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement>,
+	Requires<ContentPresenter, Windows::UI::Xaml::Controls::IContentPresenter2, Windows::UI::Xaml::Controls::IContentPresenterOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
+{
+	ContentPresenter(std::nullptr_t) noexcept {}
+	ContentPresenter();
+	static Windows::UI::Xaml::DependencyProperty OpticalMarginAlignmentProperty();
+	static Windows::UI::Xaml::DependencyProperty TextLineBoundsProperty();
+	static Windows::UI::Xaml::DependencyProperty ContentProperty();
+	static Windows::UI::Xaml::DependencyProperty ContentTemplateProperty();
+	static Windows::UI::Xaml::DependencyProperty ContentTemplateSelectorProperty();
+	static Windows::UI::Xaml::DependencyProperty ContentTransitionsProperty();
+	static Windows::UI::Xaml::DependencyProperty FontSizeProperty();
+	static Windows::UI::Xaml::DependencyProperty FontFamilyProperty();
+	static Windows::UI::Xaml::DependencyProperty FontWeightProperty();
+	static Windows::UI::Xaml::DependencyProperty FontStyleProperty();
+	static Windows::UI::Xaml::DependencyProperty FontStretchProperty();
+	static Windows::UI::Xaml::DependencyProperty CharacterSpacingProperty();
+	static Windows::UI::Xaml::DependencyProperty ForegroundProperty();
+};
+
+struct ContentControl :
+	Windows::UI::Xaml::Controls::IContentControl,
+	Bases<ContentControl, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
+	Requires<ContentControl, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
+{
+	ContentControl(std::nullptr_t) noexcept {}
+	ContentControl();
+	static Windows::UI::Xaml::DependencyProperty ContentProperty();
+	static Windows::UI::Xaml::DependencyProperty ContentTemplateProperty();
+	static Windows::UI::Xaml::DependencyProperty ContentTemplateSelectorProperty();
+	static Windows::UI::Xaml::DependencyProperty ContentTransitionsProperty();
+};
+
+struct ItemsControl :
+	Windows::UI::Xaml::Controls::IItemsControl,
+	Bases<ItemsControl, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
+	Requires<ItemsControl, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IItemsControl2, Windows::UI::Xaml::Controls::IItemContainerMapping, Windows::UI::Xaml::Controls::IItemsControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
+{
+	ItemsControl(std::nullptr_t) noexcept {}
+	ItemsControl();
+	static Windows::UI::Xaml::DependencyProperty ItemsSourceProperty();
+	static Windows::UI::Xaml::DependencyProperty ItemTemplateProperty();
+	static Windows::UI::Xaml::DependencyProperty ItemTemplateSelectorProperty();
+	static Windows::UI::Xaml::DependencyProperty ItemsPanelProperty();
+	static Windows::UI::Xaml::DependencyProperty DisplayMemberPathProperty();
+	static Windows::UI::Xaml::DependencyProperty ItemContainerStyleProperty();
+	static Windows::UI::Xaml::DependencyProperty ItemContainerStyleSelectorProperty();
+	static Windows::UI::Xaml::DependencyProperty ItemContainerTransitionsProperty();
+	static Windows::UI::Xaml::DependencyProperty GroupStyleSelectorProperty();
+	static Windows::UI::Xaml::DependencyProperty IsGroupingProperty();
+	static Windows::UI::Xaml::Controls::ItemsControl GetItemsOwner(Windows::UI::Xaml::DependencyObject const & element);
+	static Windows::UI::Xaml::Controls::ItemsControl ItemsControlFromItemContainer(Windows::UI::Xaml::DependencyObject const & container);
 };
 
 struct BackClickEventArgs :
@@ -85394,7 +85460,9 @@ struct TextChangedEventArgs :
 };
 
 struct ItemsPanelTemplate :
-	Windows::UI::Xaml::Controls::IItemsPanelTemplate
+	Windows::UI::Xaml::Controls::IItemsPanelTemplate,
+	Bases<ItemsPanelTemplate, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkTemplate>,
+	Requires<ItemsPanelTemplate, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IFrameworkTemplate>
 {
 	ItemsPanelTemplate(std::nullptr_t) noexcept {}
 	ItemsPanelTemplate();
@@ -85402,7 +85470,7 @@ struct ItemsPanelTemplate :
 
 struct Border :
 	Windows::UI::Xaml::Controls::IBorder,
-	Bases<Border, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement>,
+	Bases<Border, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement>,
 	Requires<Border, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	Border(std::nullptr_t) noexcept {}
@@ -85417,7 +85485,7 @@ struct Border :
 
 struct CaptureElement :
 	Windows::UI::Xaml::Controls::ICaptureElement,
-	Bases<CaptureElement, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement>,
+	Bases<CaptureElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement>,
 	Requires<CaptureElement, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	CaptureElement(std::nullptr_t) noexcept {}
@@ -85426,31 +85494,9 @@ struct CaptureElement :
 	static Windows::UI::Xaml::DependencyProperty StretchProperty();
 };
 
-struct ContentPresenter :
-	Windows::UI::Xaml::Controls::IContentPresenter,
-	Bases<ContentPresenter, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement>,
-	Requires<ContentPresenter, Windows::UI::Xaml::Controls::IContentPresenter2, Windows::UI::Xaml::Controls::IContentPresenterOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
-{
-	ContentPresenter(std::nullptr_t) noexcept {}
-	ContentPresenter();
-	static Windows::UI::Xaml::DependencyProperty OpticalMarginAlignmentProperty();
-	static Windows::UI::Xaml::DependencyProperty TextLineBoundsProperty();
-	static Windows::UI::Xaml::DependencyProperty ContentProperty();
-	static Windows::UI::Xaml::DependencyProperty ContentTemplateProperty();
-	static Windows::UI::Xaml::DependencyProperty ContentTemplateSelectorProperty();
-	static Windows::UI::Xaml::DependencyProperty ContentTransitionsProperty();
-	static Windows::UI::Xaml::DependencyProperty FontSizeProperty();
-	static Windows::UI::Xaml::DependencyProperty FontFamilyProperty();
-	static Windows::UI::Xaml::DependencyProperty FontWeightProperty();
-	static Windows::UI::Xaml::DependencyProperty FontStyleProperty();
-	static Windows::UI::Xaml::DependencyProperty FontStretchProperty();
-	static Windows::UI::Xaml::DependencyProperty CharacterSpacingProperty();
-	static Windows::UI::Xaml::DependencyProperty ForegroundProperty();
-};
-
 struct Image :
 	Windows::UI::Xaml::Controls::IImage,
-	Bases<Image, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement>,
+	Bases<Image, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement>,
 	Requires<Image, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	Image(std::nullptr_t) noexcept {}
@@ -85463,7 +85509,7 @@ struct Image :
 
 struct Panel :
 	Windows::UI::Xaml::Controls::IPanel,
-	Bases<Panel, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement>,
+	Bases<Panel, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement>,
 	Requires<Panel, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	Panel(std::nullptr_t) noexcept {}
@@ -85474,7 +85520,7 @@ struct Panel :
 
 struct Canvas :
 	Windows::UI::Xaml::Controls::ICanvas,
-	Bases<Canvas, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Panel>,
+	Bases<Canvas, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Panel>,
 	Requires<Canvas, Windows::UI::Xaml::Controls::IPanel, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	Canvas(std::nullptr_t) noexcept {}
@@ -85492,7 +85538,7 @@ struct Canvas :
 
 struct Grid :
 	Windows::UI::Xaml::Controls::IGrid,
-	Bases<Grid, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Panel>,
+	Bases<Grid, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Panel>,
 	Requires<Grid, Windows::UI::Xaml::Controls::IPanel, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	Grid(std::nullptr_t) noexcept {}
@@ -85513,7 +85559,7 @@ struct Grid :
 
 struct ItemsPresenter :
 	Windows::UI::Xaml::Controls::IItemsPresenter,
-	Bases<ItemsPresenter, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement>,
+	Bases<ItemsPresenter, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement>,
 	Requires<ItemsPresenter, Windows::UI::Xaml::Controls::IItemsPresenter2, Windows::UI::Xaml::Controls::Primitives::IScrollSnapPointsInfo, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	ItemsPresenter(std::nullptr_t) noexcept {}
@@ -85529,7 +85575,7 @@ struct ItemsPresenter :
 
 struct MediaElement :
 	Windows::UI::Xaml::Controls::IMediaElement,
-	Bases<MediaElement, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement>,
+	Bases<MediaElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement>,
 	Requires<MediaElement, Windows::UI::Xaml::Controls::IMediaElement2, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	MediaElement(std::nullptr_t) noexcept {}
@@ -85575,7 +85621,7 @@ struct MediaElement :
 
 struct RichTextBlockOverflow :
 	Windows::UI::Xaml::Controls::IRichTextBlockOverflow,
-	Bases<RichTextBlockOverflow, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement>,
+	Bases<RichTextBlockOverflow, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement>,
 	Requires<RichTextBlockOverflow, Windows::UI::Xaml::Controls::IRichTextBlockOverflow2, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	RichTextBlockOverflow(std::nullptr_t) noexcept {}
@@ -85588,7 +85634,7 @@ struct RichTextBlockOverflow :
 
 struct RichTextBlock :
 	Windows::UI::Xaml::Controls::IRichTextBlock,
-	Bases<RichTextBlock, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement>,
+	Bases<RichTextBlock, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement>,
 	Requires<RichTextBlock, Windows::UI::Xaml::Controls::IRichTextBlock2, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	RichTextBlock(std::nullptr_t) noexcept {}
@@ -85621,7 +85667,7 @@ struct RichTextBlock :
 
 struct ScrollContentPresenter :
 	Windows::UI::Xaml::Controls::IScrollContentPresenter,
-	Bases<ScrollContentPresenter, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentPresenter>,
+	Bases<ScrollContentPresenter, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentPresenter>,
 	Requires<ScrollContentPresenter, Windows::UI::Xaml::Controls::IContentPresenter, Windows::UI::Xaml::Controls::IContentPresenter2, Windows::UI::Xaml::Controls::IContentPresenterOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	ScrollContentPresenter(std::nullptr_t) noexcept {}
@@ -85630,7 +85676,7 @@ struct ScrollContentPresenter :
 
 struct StackPanel :
 	Windows::UI::Xaml::Controls::IStackPanel,
-	Bases<StackPanel, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Panel>,
+	Bases<StackPanel, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Panel>,
 	Requires<StackPanel, Windows::UI::Xaml::Controls::IPanel, Windows::UI::Xaml::Controls::Primitives::IScrollSnapPointsInfo, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	StackPanel(std::nullptr_t) noexcept {}
@@ -85641,7 +85687,7 @@ struct StackPanel :
 
 struct TextBlock :
 	Windows::UI::Xaml::Controls::ITextBlock,
-	Bases<TextBlock, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement>,
+	Bases<TextBlock, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement>,
 	Requires<TextBlock, Windows::UI::Xaml::Controls::ITextBlock2, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	TextBlock(std::nullptr_t) noexcept {}
@@ -85672,7 +85718,7 @@ struct TextBlock :
 
 struct VariableSizedWrapGrid :
 	Windows::UI::Xaml::Controls::IVariableSizedWrapGrid,
-	Bases<VariableSizedWrapGrid, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Panel>,
+	Bases<VariableSizedWrapGrid, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Panel>,
 	Requires<VariableSizedWrapGrid, Windows::UI::Xaml::Controls::IPanel, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	VariableSizedWrapGrid(std::nullptr_t) noexcept {}
@@ -85693,7 +85739,7 @@ struct VariableSizedWrapGrid :
 
 struct Viewbox :
 	Windows::UI::Xaml::Controls::IViewbox,
-	Bases<Viewbox, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement>,
+	Bases<Viewbox, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement>,
 	Requires<Viewbox, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	Viewbox(std::nullptr_t) noexcept {}
@@ -85702,18 +85748,10 @@ struct Viewbox :
 	static Windows::UI::Xaml::DependencyProperty StretchDirectionProperty();
 };
 
-struct VirtualizingPanel :
-	Windows::UI::Xaml::Controls::IVirtualizingPanel,
-	Bases<VirtualizingPanel, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Panel>,
-	Requires<VirtualizingPanel, Windows::UI::Xaml::Controls::IPanel, Windows::UI::Xaml::Controls::IVirtualizingPanelOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
-{
-	VirtualizingPanel(std::nullptr_t) noexcept {}
-};
-
 struct VirtualizingStackPanel :
 	Windows::UI::Xaml::Controls::IVirtualizingStackPanel,
-	Bases<VirtualizingStackPanel, Windows::UI::Xaml::Controls::Primitives::OrientedVirtualizingPanel>,
-	Requires<VirtualizingStackPanel, Windows::UI::Xaml::Controls::Primitives::IOrientedVirtualizingPanel, Windows::UI::Xaml::Controls::Primitives::IScrollSnapPointsInfo, Windows::UI::Xaml::Controls::IVirtualizingStackPanelOverrides>
+	Bases<VirtualizingStackPanel, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::OrientedVirtualizingPanel, Windows::UI::Xaml::Controls::VirtualizingPanel, Windows::UI::Xaml::Controls::Panel>,
+	Requires<VirtualizingStackPanel, Windows::UI::Xaml::Controls::Primitives::IOrientedVirtualizingPanel, Windows::UI::Xaml::Controls::Primitives::IScrollSnapPointsInfo, Windows::UI::Xaml::Controls::IPanel, Windows::UI::Xaml::Controls::IVirtualizingPanel, Windows::UI::Xaml::Controls::IVirtualizingPanelOverrides, Windows::UI::Xaml::Controls::IVirtualizingStackPanelOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	VirtualizingStackPanel(std::nullptr_t) noexcept {}
 	VirtualizingStackPanel();
@@ -85728,7 +85766,7 @@ struct VirtualizingStackPanel :
 
 struct IconElement :
 	Windows::UI::Xaml::Controls::IIconElement,
-	Bases<IconElement, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement>,
+	Bases<IconElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement>,
 	Requires<IconElement, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	IconElement(std::nullptr_t) noexcept {}
@@ -85737,7 +85775,7 @@ struct IconElement :
 
 struct BitmapIcon :
 	Windows::UI::Xaml::Controls::IBitmapIcon,
-	Bases<BitmapIcon, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::IconElement>,
+	Bases<BitmapIcon, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::IconElement>,
 	Requires<BitmapIcon, Windows::UI::Xaml::Controls::IIconElement, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	BitmapIcon(std::nullptr_t) noexcept {}
@@ -85747,7 +85785,7 @@ struct BitmapIcon :
 
 struct FontIcon :
 	Windows::UI::Xaml::Controls::IFontIcon,
-	Bases<FontIcon, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::IconElement>,
+	Bases<FontIcon, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::IconElement>,
 	Requires<FontIcon, Windows::UI::Xaml::Controls::IIconElement, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	FontIcon(std::nullptr_t) noexcept {}
@@ -85761,7 +85799,7 @@ struct FontIcon :
 
 struct ItemsStackPanel :
 	Windows::UI::Xaml::Controls::IItemsStackPanel,
-	Bases<ItemsStackPanel, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Panel>,
+	Bases<ItemsStackPanel, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Panel>,
 	Requires<ItemsStackPanel, Windows::UI::Xaml::Controls::IPanel, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	ItemsStackPanel(std::nullptr_t) noexcept {}
@@ -85774,7 +85812,7 @@ struct ItemsStackPanel :
 
 struct ItemsWrapGrid :
 	Windows::UI::Xaml::Controls::IItemsWrapGrid,
-	Bases<ItemsWrapGrid, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Panel>,
+	Bases<ItemsWrapGrid, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Panel>,
 	Requires<ItemsWrapGrid, Windows::UI::Xaml::Controls::IPanel, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	ItemsWrapGrid(std::nullptr_t) noexcept {}
@@ -85790,7 +85828,7 @@ struct ItemsWrapGrid :
 
 struct PathIcon :
 	Windows::UI::Xaml::Controls::IPathIcon,
-	Bases<PathIcon, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::IconElement>,
+	Bases<PathIcon, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::IconElement>,
 	Requires<PathIcon, Windows::UI::Xaml::Controls::IIconElement, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	PathIcon(std::nullptr_t) noexcept {}
@@ -85800,7 +85838,7 @@ struct PathIcon :
 
 struct SwapChainBackgroundPanel :
 	Windows::UI::Xaml::Controls::ISwapChainBackgroundPanel,
-	Bases<SwapChainBackgroundPanel, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Panel, Windows::UI::Xaml::Controls::Grid>,
+	Bases<SwapChainBackgroundPanel, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Panel, Windows::UI::Xaml::Controls::Grid>,
 	Requires<SwapChainBackgroundPanel, Windows::UI::Xaml::Controls::IPanel, Windows::UI::Xaml::Controls::IGrid, Windows::UI::Xaml::Controls::ISwapChainBackgroundPanel2, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	SwapChainBackgroundPanel(std::nullptr_t) noexcept {}
@@ -85809,7 +85847,7 @@ struct SwapChainBackgroundPanel :
 
 struct SwapChainPanel :
 	Windows::UI::Xaml::Controls::ISwapChainPanel,
-	Bases<SwapChainPanel, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Panel, Windows::UI::Xaml::Controls::Grid>,
+	Bases<SwapChainPanel, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Panel, Windows::UI::Xaml::Controls::Grid>,
 	Requires<SwapChainPanel, Windows::UI::Xaml::Controls::IPanel, Windows::UI::Xaml::Controls::IGrid, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	SwapChainPanel(std::nullptr_t) noexcept {}
@@ -85820,7 +85858,7 @@ struct SwapChainPanel :
 
 struct SymbolIcon :
 	Windows::UI::Xaml::Controls::ISymbolIcon,
-	Bases<SymbolIcon, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::IconElement>,
+	Bases<SymbolIcon, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::IconElement>,
 	Requires<SymbolIcon, Windows::UI::Xaml::Controls::IIconElement, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	SymbolIcon(std::nullptr_t) noexcept {}
@@ -85831,7 +85869,7 @@ struct SymbolIcon :
 
 struct WebView :
 	Windows::UI::Xaml::Controls::IWebView,
-	Bases<WebView, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement>,
+	Bases<WebView, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement>,
 	Requires<WebView, Windows::UI::Xaml::Controls::IWebView2, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	WebView(std::nullptr_t) noexcept {}
@@ -85845,8 +85883,8 @@ struct WebView :
 
 struct WrapGrid :
 	Windows::UI::Xaml::Controls::IWrapGrid,
-	Bases<WrapGrid, Windows::UI::Xaml::Controls::Primitives::OrientedVirtualizingPanel>,
-	Requires<WrapGrid, Windows::UI::Xaml::Controls::Primitives::IOrientedVirtualizingPanel, Windows::UI::Xaml::Controls::Primitives::IScrollSnapPointsInfo>
+	Bases<WrapGrid, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::OrientedVirtualizingPanel, Windows::UI::Xaml::Controls::VirtualizingPanel, Windows::UI::Xaml::Controls::Panel>,
+	Requires<WrapGrid, Windows::UI::Xaml::Controls::Primitives::IOrientedVirtualizingPanel, Windows::UI::Xaml::Controls::Primitives::IScrollSnapPointsInfo, Windows::UI::Xaml::Controls::IPanel, Windows::UI::Xaml::Controls::IVirtualizingPanel, Windows::UI::Xaml::Controls::IVirtualizingPanelOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	WrapGrid(std::nullptr_t) noexcept {}
 	WrapGrid();
@@ -85868,23 +85906,10 @@ struct WebViewBrush :
 	static Windows::UI::Xaml::DependencyProperty SourceNameProperty();
 };
 
-struct ContentControl :
-	Windows::UI::Xaml::Controls::IContentControl,
-	Bases<ContentControl, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
-	Requires<ContentControl, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
-{
-	ContentControl(std::nullptr_t) noexcept {}
-	ContentControl();
-	static Windows::UI::Xaml::DependencyProperty ContentProperty();
-	static Windows::UI::Xaml::DependencyProperty ContentTemplateProperty();
-	static Windows::UI::Xaml::DependencyProperty ContentTemplateSelectorProperty();
-	static Windows::UI::Xaml::DependencyProperty ContentTransitionsProperty();
-};
-
 struct ComboBoxItem :
 	Windows::UI::Xaml::Controls::IComboBoxItem,
-	Bases<ComboBoxItem, Windows::UI::Xaml::Controls::Primitives::SelectorItem>,
-	Requires<ComboBoxItem, Windows::UI::Xaml::Controls::Primitives::ISelectorItem>
+	Bases<ComboBoxItem, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::SelectorItem, Windows::UI::Xaml::Controls::ContentControl>,
+	Requires<ComboBoxItem, Windows::UI::Xaml::Controls::Primitives::ISelectorItem, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	ComboBoxItem(std::nullptr_t) noexcept {}
 	ComboBoxItem();
@@ -85892,7 +85917,7 @@ struct ComboBoxItem :
 
 struct DatePicker :
 	Windows::UI::Xaml::Controls::IDatePicker,
-	Bases<DatePicker, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
+	Bases<DatePicker, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
 	Requires<DatePicker, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	DatePicker(std::nullptr_t) noexcept {}
@@ -85914,8 +85939,8 @@ struct DatePicker :
 
 struct FlipViewItem :
 	Windows::UI::Xaml::Controls::IFlipViewItem,
-	Bases<FlipViewItem, Windows::UI::Xaml::Controls::Primitives::SelectorItem>,
-	Requires<FlipViewItem, Windows::UI::Xaml::Controls::Primitives::ISelectorItem>
+	Bases<FlipViewItem, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::SelectorItem, Windows::UI::Xaml::Controls::ContentControl>,
+	Requires<FlipViewItem, Windows::UI::Xaml::Controls::Primitives::ISelectorItem, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	FlipViewItem(std::nullptr_t) noexcept {}
 	FlipViewItem();
@@ -85923,8 +85948,8 @@ struct FlipViewItem :
 
 struct GridViewItem :
 	Windows::UI::Xaml::Controls::IGridViewItem,
-	Bases<GridViewItem, Windows::UI::Xaml::Controls::Primitives::SelectorItem>,
-	Requires<GridViewItem, Windows::UI::Xaml::Controls::Primitives::ISelectorItem>
+	Bases<GridViewItem, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::SelectorItem, Windows::UI::Xaml::Controls::ContentControl>,
+	Requires<GridViewItem, Windows::UI::Xaml::Controls::Primitives::ISelectorItem, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	GridViewItem(std::nullptr_t) noexcept {}
 	GridViewItem();
@@ -85932,7 +85957,7 @@ struct GridViewItem :
 
 struct GroupItem :
 	Windows::UI::Xaml::Controls::IGroupItem,
-	Bases<GroupItem, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl>,
+	Bases<GroupItem, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl>,
 	Requires<GroupItem, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	GroupItem(std::nullptr_t) noexcept {}
@@ -85941,7 +85966,7 @@ struct GroupItem :
 
 struct SemanticZoom :
 	Windows::UI::Xaml::Controls::ISemanticZoom,
-	Bases<SemanticZoom, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
+	Bases<SemanticZoom, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
 	Requires<SemanticZoom, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	SemanticZoom(std::nullptr_t) noexcept {}
@@ -85953,31 +85978,10 @@ struct SemanticZoom :
 	static Windows::UI::Xaml::DependencyProperty IsZoomOutButtonEnabledProperty();
 };
 
-struct ItemsControl :
-	Windows::UI::Xaml::Controls::IItemsControl,
-	Bases<ItemsControl, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
-	Requires<ItemsControl, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IItemsControl2, Windows::UI::Xaml::Controls::IItemContainerMapping, Windows::UI::Xaml::Controls::IItemsControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
-{
-	ItemsControl(std::nullptr_t) noexcept {}
-	ItemsControl();
-	static Windows::UI::Xaml::DependencyProperty ItemsSourceProperty();
-	static Windows::UI::Xaml::DependencyProperty ItemTemplateProperty();
-	static Windows::UI::Xaml::DependencyProperty ItemTemplateSelectorProperty();
-	static Windows::UI::Xaml::DependencyProperty ItemsPanelProperty();
-	static Windows::UI::Xaml::DependencyProperty DisplayMemberPathProperty();
-	static Windows::UI::Xaml::DependencyProperty ItemContainerStyleProperty();
-	static Windows::UI::Xaml::DependencyProperty ItemContainerStyleSelectorProperty();
-	static Windows::UI::Xaml::DependencyProperty ItemContainerTransitionsProperty();
-	static Windows::UI::Xaml::DependencyProperty GroupStyleSelectorProperty();
-	static Windows::UI::Xaml::DependencyProperty IsGroupingProperty();
-	static Windows::UI::Xaml::Controls::ItemsControl GetItemsOwner(Windows::UI::Xaml::DependencyObject const & element);
-	static Windows::UI::Xaml::Controls::ItemsControl ItemsControlFromItemContainer(Windows::UI::Xaml::DependencyObject const & container);
-};
-
 struct ListBoxItem :
 	Windows::UI::Xaml::Controls::IListBoxItem,
-	Bases<ListBoxItem, Windows::UI::Xaml::Controls::Primitives::SelectorItem>,
-	Requires<ListBoxItem, Windows::UI::Xaml::Controls::Primitives::ISelectorItem>
+	Bases<ListBoxItem, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::SelectorItem, Windows::UI::Xaml::Controls::ContentControl>,
+	Requires<ListBoxItem, Windows::UI::Xaml::Controls::Primitives::ISelectorItem, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	ListBoxItem(std::nullptr_t) noexcept {}
 	ListBoxItem();
@@ -85985,8 +85989,8 @@ struct ListBoxItem :
 
 struct ListViewItem :
 	Windows::UI::Xaml::Controls::IListViewItem,
-	Bases<ListViewItem, Windows::UI::Xaml::Controls::Primitives::SelectorItem>,
-	Requires<ListViewItem, Windows::UI::Xaml::Controls::Primitives::ISelectorItem>
+	Bases<ListViewItem, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::SelectorItem, Windows::UI::Xaml::Controls::ContentControl>,
+	Requires<ListViewItem, Windows::UI::Xaml::Controls::Primitives::ISelectorItem, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	ListViewItem(std::nullptr_t) noexcept {}
 	ListViewItem();
@@ -85994,7 +85998,7 @@ struct ListViewItem :
 
 struct PasswordBox :
 	Windows::UI::Xaml::Controls::IPasswordBox,
-	Bases<PasswordBox, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
+	Bases<PasswordBox, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
 	Requires<PasswordBox, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IPasswordBox2, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	PasswordBox(std::nullptr_t) noexcept {}
@@ -86012,7 +86016,7 @@ struct PasswordBox :
 
 struct ProgressRing :
 	Windows::UI::Xaml::Controls::IProgressRing,
-	Bases<ProgressRing, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
+	Bases<ProgressRing, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
 	Requires<ProgressRing, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	ProgressRing(std::nullptr_t) noexcept {}
@@ -86022,7 +86026,7 @@ struct ProgressRing :
 
 struct RichEditBox :
 	Windows::UI::Xaml::Controls::IRichEditBox,
-	Bases<RichEditBox, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
+	Bases<RichEditBox, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
 	Requires<RichEditBox, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IRichEditBox2, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	RichEditBox(std::nullptr_t) noexcept {}
@@ -86044,7 +86048,7 @@ struct RichEditBox :
 
 struct ScrollViewer :
 	Windows::UI::Xaml::Controls::IScrollViewer,
-	Bases<ScrollViewer, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl>,
+	Bases<ScrollViewer, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl>,
 	Requires<ScrollViewer, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::Controls::IScrollViewer2, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	ScrollViewer(std::nullptr_t) noexcept {}
@@ -86117,7 +86121,7 @@ struct ScrollViewer :
 
 struct SettingsFlyout :
 	Windows::UI::Xaml::Controls::ISettingsFlyout,
-	Bases<SettingsFlyout, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl>,
+	Bases<SettingsFlyout, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl>,
 	Requires<SettingsFlyout, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	SettingsFlyout(std::nullptr_t) noexcept {}
@@ -86130,7 +86134,7 @@ struct SettingsFlyout :
 
 struct TextBox :
 	Windows::UI::Xaml::Controls::ITextBox,
-	Bases<TextBox, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
+	Bases<TextBox, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
 	Requires<TextBox, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::ITextBox2, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	TextBox(std::nullptr_t) noexcept {}
@@ -86154,7 +86158,7 @@ struct TextBox :
 
 struct ToggleSwitch :
 	Windows::UI::Xaml::Controls::IToggleSwitch,
-	Bases<ToggleSwitch, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
+	Bases<ToggleSwitch, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
 	Requires<ToggleSwitch, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IToggleSwitchOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	ToggleSwitch(std::nullptr_t) noexcept {}
@@ -86170,7 +86174,7 @@ struct ToggleSwitch :
 
 struct ToolTip :
 	Windows::UI::Xaml::Controls::IToolTip,
-	Bases<ToolTip, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl>,
+	Bases<ToolTip, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl>,
 	Requires<ToolTip, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	ToolTip(std::nullptr_t) noexcept {}
@@ -86184,7 +86188,7 @@ struct ToolTip :
 
 struct UserControl :
 	Windows::UI::Xaml::Controls::IUserControl,
-	Bases<UserControl, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
+	Bases<UserControl, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
 	Requires<UserControl, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	UserControl(std::nullptr_t) noexcept {}
@@ -86194,8 +86198,8 @@ struct UserControl :
 
 struct Button :
 	Windows::UI::Xaml::Controls::IButton,
-	Bases<Button, Windows::UI::Xaml::Controls::Primitives::ButtonBase>,
-	Requires<Button, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::IButtonWithFlyout>
+	Bases<Button, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::ButtonBase, Windows::UI::Xaml::Controls::ContentControl>,
+	Requires<Button, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::Controls::IButtonWithFlyout, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	Button(std::nullptr_t) noexcept {}
 	Button();
@@ -86204,8 +86208,8 @@ struct Button :
 
 struct HyperlinkButton :
 	Windows::UI::Xaml::Controls::IHyperlinkButton,
-	Bases<HyperlinkButton, Windows::UI::Xaml::Controls::Primitives::ButtonBase>,
-	Requires<HyperlinkButton, Windows::UI::Xaml::Controls::Primitives::IButtonBase>
+	Bases<HyperlinkButton, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::ButtonBase, Windows::UI::Xaml::Controls::ContentControl>,
+	Requires<HyperlinkButton, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	HyperlinkButton(std::nullptr_t) noexcept {}
 	HyperlinkButton();
@@ -86214,7 +86218,7 @@ struct HyperlinkButton :
 
 struct ProgressBar :
 	Windows::UI::Xaml::Controls::IProgressBar,
-	Bases<ProgressBar, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::RangeBase>,
+	Bases<ProgressBar, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::RangeBase>,
 	Requires<ProgressBar, Windows::UI::Xaml::Controls::Primitives::IRangeBase, Windows::UI::Xaml::Controls::Primitives::IRangeBaseOverrides, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	ProgressBar(std::nullptr_t) noexcept {}
@@ -86226,7 +86230,7 @@ struct ProgressBar :
 
 struct Slider :
 	Windows::UI::Xaml::Controls::ISlider,
-	Bases<Slider, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::RangeBase>,
+	Bases<Slider, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::RangeBase>,
 	Requires<Slider, Windows::UI::Xaml::Controls::Primitives::IRangeBase, Windows::UI::Xaml::Controls::Primitives::IRangeBaseOverrides, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::ISlider2, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	Slider(std::nullptr_t) noexcept {}
@@ -86246,8 +86250,8 @@ struct Slider :
 
 struct ComboBox :
 	Windows::UI::Xaml::Controls::IComboBox,
-	Bases<ComboBox, Windows::UI::Xaml::Controls::Primitives::Selector>,
-	Requires<ComboBox, Windows::UI::Xaml::Controls::Primitives::ISelector, Windows::UI::Xaml::Controls::IComboBox2, Windows::UI::Xaml::Controls::IComboBoxOverrides>
+	Bases<ComboBox, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::Selector, Windows::UI::Xaml::Controls::ItemsControl>,
+	Requires<ComboBox, Windows::UI::Xaml::Controls::Primitives::ISelector, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IItemsControl, Windows::UI::Xaml::Controls::IItemsControl2, Windows::UI::Xaml::Controls::IItemContainerMapping, Windows::UI::Xaml::Controls::IItemsControlOverrides, Windows::UI::Xaml::Controls::IComboBox2, Windows::UI::Xaml::Controls::IComboBoxOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	ComboBox(std::nullptr_t) noexcept {}
 	ComboBox();
@@ -86260,8 +86264,8 @@ struct ComboBox :
 
 struct ListViewBase :
 	Windows::UI::Xaml::Controls::IListViewBase,
-	Bases<ListViewBase, Windows::UI::Xaml::Controls::Primitives::Selector>,
-	Requires<ListViewBase, Windows::UI::Xaml::Controls::Primitives::ISelector, Windows::UI::Xaml::Controls::IListViewBase2, Windows::UI::Xaml::Controls::ISemanticZoomInformation>
+	Bases<ListViewBase, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::Selector, Windows::UI::Xaml::Controls::ItemsControl>,
+	Requires<ListViewBase, Windows::UI::Xaml::Controls::Primitives::ISelector, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IItemsControl, Windows::UI::Xaml::Controls::IItemsControl2, Windows::UI::Xaml::Controls::IItemContainerMapping, Windows::UI::Xaml::Controls::IItemsControlOverrides, Windows::UI::Xaml::Controls::IListViewBase2, Windows::UI::Xaml::Controls::ISemanticZoomInformation, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	ListViewBase(std::nullptr_t) noexcept {}
 	static Windows::UI::Xaml::DependencyProperty SelectionModeProperty();
@@ -86286,8 +86290,8 @@ struct ListViewBase :
 
 struct FlipView :
 	Windows::UI::Xaml::Controls::IFlipView,
-	Bases<FlipView, Windows::UI::Xaml::Controls::Primitives::Selector>,
-	Requires<FlipView, Windows::UI::Xaml::Controls::Primitives::ISelector, Windows::UI::Xaml::Controls::IFlipView2>
+	Bases<FlipView, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::Selector, Windows::UI::Xaml::Controls::ItemsControl>,
+	Requires<FlipView, Windows::UI::Xaml::Controls::Primitives::ISelector, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IItemsControl, Windows::UI::Xaml::Controls::IItemsControl2, Windows::UI::Xaml::Controls::IItemContainerMapping, Windows::UI::Xaml::Controls::IItemsControlOverrides, Windows::UI::Xaml::Controls::IFlipView2, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	FlipView(std::nullptr_t) noexcept {}
 	FlipView();
@@ -86296,8 +86300,8 @@ struct FlipView :
 
 struct GridView :
 	Windows::UI::Xaml::Controls::IGridView,
-	Bases<GridView, Windows::UI::Xaml::Controls::Primitives::Selector, Windows::UI::Xaml::Controls::ListViewBase>,
-	Requires<GridView, Windows::UI::Xaml::Controls::Primitives::ISelector, Windows::UI::Xaml::Controls::IListViewBase, Windows::UI::Xaml::Controls::IListViewBase2, Windows::UI::Xaml::Controls::ISemanticZoomInformation>
+	Bases<GridView, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::Selector, Windows::UI::Xaml::Controls::ItemsControl, Windows::UI::Xaml::Controls::ListViewBase>,
+	Requires<GridView, Windows::UI::Xaml::Controls::Primitives::ISelector, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IItemsControl, Windows::UI::Xaml::Controls::IItemsControl2, Windows::UI::Xaml::Controls::IItemContainerMapping, Windows::UI::Xaml::Controls::IItemsControlOverrides, Windows::UI::Xaml::Controls::IListViewBase, Windows::UI::Xaml::Controls::IListViewBase2, Windows::UI::Xaml::Controls::ISemanticZoomInformation, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	GridView(std::nullptr_t) noexcept {}
 	GridView();
@@ -86305,8 +86309,8 @@ struct GridView :
 
 struct ListBox :
 	Windows::UI::Xaml::Controls::IListBox,
-	Bases<ListBox, Windows::UI::Xaml::Controls::Primitives::Selector>,
-	Requires<ListBox, Windows::UI::Xaml::Controls::Primitives::ISelector>
+	Bases<ListBox, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::Selector, Windows::UI::Xaml::Controls::ItemsControl>,
+	Requires<ListBox, Windows::UI::Xaml::Controls::Primitives::ISelector, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IItemsControl, Windows::UI::Xaml::Controls::IItemsControl2, Windows::UI::Xaml::Controls::IItemContainerMapping, Windows::UI::Xaml::Controls::IItemsControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	ListBox(std::nullptr_t) noexcept {}
 	ListBox();
@@ -86315,8 +86319,8 @@ struct ListBox :
 
 struct ListView :
 	Windows::UI::Xaml::Controls::IListView,
-	Bases<ListView, Windows::UI::Xaml::Controls::Primitives::Selector, Windows::UI::Xaml::Controls::ListViewBase>,
-	Requires<ListView, Windows::UI::Xaml::Controls::Primitives::ISelector, Windows::UI::Xaml::Controls::IListViewBase, Windows::UI::Xaml::Controls::IListViewBase2, Windows::UI::Xaml::Controls::ISemanticZoomInformation>
+	Bases<ListView, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::Selector, Windows::UI::Xaml::Controls::ItemsControl, Windows::UI::Xaml::Controls::ListViewBase>,
+	Requires<ListView, Windows::UI::Xaml::Controls::Primitives::ISelector, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IItemsControl, Windows::UI::Xaml::Controls::IItemsControl2, Windows::UI::Xaml::Controls::IItemContainerMapping, Windows::UI::Xaml::Controls::IItemsControlOverrides, Windows::UI::Xaml::Controls::IListViewBase, Windows::UI::Xaml::Controls::IListViewBase2, Windows::UI::Xaml::Controls::ISemanticZoomInformation, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	ListView(std::nullptr_t) noexcept {}
 	ListView();
@@ -86324,8 +86328,8 @@ struct ListView :
 
 struct CheckBox :
 	Windows::UI::Xaml::Controls::ICheckBox,
-	Bases<CheckBox, Windows::UI::Xaml::Controls::Primitives::ButtonBase, Windows::UI::Xaml::Controls::Primitives::ToggleButton>,
-	Requires<CheckBox, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::Primitives::IToggleButton, Windows::UI::Xaml::Controls::Primitives::IToggleButtonOverrides>
+	Bases<CheckBox, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::ButtonBase, Windows::UI::Xaml::Controls::Primitives::ToggleButton, Windows::UI::Xaml::Controls::ContentControl>,
+	Requires<CheckBox, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::Primitives::IToggleButton, Windows::UI::Xaml::Controls::Primitives::IToggleButtonOverrides, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	CheckBox(std::nullptr_t) noexcept {}
 	CheckBox();
@@ -86333,8 +86337,8 @@ struct CheckBox :
 
 struct RadioButton :
 	Windows::UI::Xaml::Controls::IRadioButton,
-	Bases<RadioButton, Windows::UI::Xaml::Controls::Primitives::ButtonBase, Windows::UI::Xaml::Controls::Primitives::ToggleButton>,
-	Requires<RadioButton, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::Primitives::IToggleButton, Windows::UI::Xaml::Controls::Primitives::IToggleButtonOverrides>
+	Bases<RadioButton, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::ButtonBase, Windows::UI::Xaml::Controls::Primitives::ToggleButton, Windows::UI::Xaml::Controls::ContentControl>,
+	Requires<RadioButton, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::Primitives::IToggleButton, Windows::UI::Xaml::Controls::Primitives::IToggleButtonOverrides, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	RadioButton(std::nullptr_t) noexcept {}
 	RadioButton();
@@ -86343,7 +86347,7 @@ struct RadioButton :
 
 struct AppBar :
 	Windows::UI::Xaml::Controls::IAppBar,
-	Bases<AppBar, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl>,
+	Bases<AppBar, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl>,
 	Requires<AppBar, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::Controls::IAppBarOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	AppBar(std::nullptr_t) noexcept {}
@@ -86354,8 +86358,8 @@ struct AppBar :
 
 struct AppBarButton :
 	Windows::UI::Xaml::Controls::IAppBarButton,
-	Bases<AppBarButton, Windows::UI::Xaml::Controls::Primitives::ButtonBase, Windows::UI::Xaml::Controls::Button>,
-	Requires<AppBarButton, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::IButton, Windows::UI::Xaml::Controls::IButtonWithFlyout, Windows::UI::Xaml::Controls::ICommandBarElement>
+	Bases<AppBarButton, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::ButtonBase, Windows::UI::Xaml::Controls::ContentControl, Windows::UI::Xaml::Controls::Button>,
+	Requires<AppBarButton, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::Controls::IButton, Windows::UI::Xaml::Controls::IButtonWithFlyout, Windows::UI::Xaml::Controls::ICommandBarElement, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	AppBarButton(std::nullptr_t) noexcept {}
 	AppBarButton();
@@ -86366,7 +86370,7 @@ struct AppBarButton :
 
 struct AppBarSeparator :
 	Windows::UI::Xaml::Controls::IAppBarSeparator,
-	Bases<AppBarSeparator, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
+	Bases<AppBarSeparator, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
 	Requires<AppBarSeparator, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::ICommandBarElement, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	AppBarSeparator(std::nullptr_t) noexcept {}
@@ -86376,8 +86380,8 @@ struct AppBarSeparator :
 
 struct AppBarToggleButton :
 	Windows::UI::Xaml::Controls::IAppBarToggleButton,
-	Bases<AppBarToggleButton, Windows::UI::Xaml::Controls::Primitives::ButtonBase, Windows::UI::Xaml::Controls::Primitives::ToggleButton>,
-	Requires<AppBarToggleButton, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::Primitives::IToggleButton, Windows::UI::Xaml::Controls::Primitives::IToggleButtonOverrides, Windows::UI::Xaml::Controls::ICommandBarElement>
+	Bases<AppBarToggleButton, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::ButtonBase, Windows::UI::Xaml::Controls::Primitives::ToggleButton, Windows::UI::Xaml::Controls::ContentControl>,
+	Requires<AppBarToggleButton, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::Primitives::IToggleButton, Windows::UI::Xaml::Controls::Primitives::IToggleButtonOverrides, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::Controls::ICommandBarElement, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	AppBarToggleButton(std::nullptr_t) noexcept {}
 	AppBarToggleButton();
@@ -86388,7 +86392,7 @@ struct AppBarToggleButton :
 
 struct CommandBar :
 	Windows::UI::Xaml::Controls::ICommandBar,
-	Bases<CommandBar, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl, Windows::UI::Xaml::Controls::AppBar>,
+	Bases<CommandBar, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl, Windows::UI::Xaml::Controls::AppBar>,
 	Requires<CommandBar, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::Controls::IAppBar, Windows::UI::Xaml::Controls::IAppBarOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	CommandBar(std::nullptr_t) noexcept {}
@@ -86399,7 +86403,7 @@ struct CommandBar :
 
 struct FlyoutPresenter :
 	Windows::UI::Xaml::Controls::IFlyoutPresenter,
-	Bases<FlyoutPresenter, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl>,
+	Bases<FlyoutPresenter, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl>,
 	Requires<FlyoutPresenter, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	FlyoutPresenter(std::nullptr_t) noexcept {}
@@ -86408,7 +86412,7 @@ struct FlyoutPresenter :
 
 struct Frame :
 	Windows::UI::Xaml::Controls::IFrame,
-	Bases<Frame, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl>,
+	Bases<Frame, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl>,
 	Requires<Frame, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::Controls::IFrame2, Windows::UI::Xaml::Controls::INavigate, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	Frame(std::nullptr_t) noexcept {}
@@ -86428,7 +86432,7 @@ struct Frame :
 
 struct HubSection :
 	Windows::UI::Xaml::Controls::IHubSection,
-	Bases<HubSection, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
+	Bases<HubSection, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
 	Requires<HubSection, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	HubSection(std::nullptr_t) noexcept {}
@@ -86441,7 +86445,7 @@ struct HubSection :
 
 struct Hub :
 	Windows::UI::Xaml::Controls::IHub,
-	Bases<Hub, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
+	Bases<Hub, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
 	Requires<Hub, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::ISemanticZoomInformation, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	Hub(std::nullptr_t) noexcept {}
@@ -86457,7 +86461,7 @@ struct Hub :
 
 struct ListViewBaseHeaderItem :
 	Windows::UI::Xaml::Controls::IListViewBaseHeaderItem,
-	Bases<ListViewBaseHeaderItem, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl>,
+	Bases<ListViewBaseHeaderItem, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl>,
 	Requires<ListViewBaseHeaderItem, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	ListViewBaseHeaderItem(std::nullptr_t) noexcept {}
@@ -86465,7 +86469,7 @@ struct ListViewBaseHeaderItem :
 
 struct GridViewHeaderItem :
 	Windows::UI::Xaml::Controls::IGridViewHeaderItem,
-	Bases<GridViewHeaderItem, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl, Windows::UI::Xaml::Controls::ListViewBaseHeaderItem>,
+	Bases<GridViewHeaderItem, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl, Windows::UI::Xaml::Controls::ListViewBaseHeaderItem>,
 	Requires<GridViewHeaderItem, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::Controls::IListViewBaseHeaderItem, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	GridViewHeaderItem(std::nullptr_t) noexcept {}
@@ -86474,7 +86478,7 @@ struct GridViewHeaderItem :
 
 struct ListViewHeaderItem :
 	Windows::UI::Xaml::Controls::IListViewHeaderItem,
-	Bases<ListViewHeaderItem, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl, Windows::UI::Xaml::Controls::ListViewBaseHeaderItem>,
+	Bases<ListViewHeaderItem, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl, Windows::UI::Xaml::Controls::ListViewBaseHeaderItem>,
 	Requires<ListViewHeaderItem, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::Controls::IListViewBaseHeaderItem, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	ListViewHeaderItem(std::nullptr_t) noexcept {}
@@ -86483,7 +86487,7 @@ struct ListViewHeaderItem :
 
 struct MenuFlyoutItemBase :
 	Windows::UI::Xaml::Controls::IMenuFlyoutItemBase,
-	Bases<MenuFlyoutItemBase, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
+	Bases<MenuFlyoutItemBase, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
 	Requires<MenuFlyoutItemBase, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	MenuFlyoutItemBase(std::nullptr_t) noexcept {}
@@ -86491,7 +86495,7 @@ struct MenuFlyoutItemBase :
 
 struct MenuFlyoutItem :
 	Windows::UI::Xaml::Controls::IMenuFlyoutItem,
-	Bases<MenuFlyoutItem, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::MenuFlyoutItemBase>,
+	Bases<MenuFlyoutItem, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::MenuFlyoutItemBase>,
 	Requires<MenuFlyoutItem, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IMenuFlyoutItemBase, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	MenuFlyoutItem(std::nullptr_t) noexcept {}
@@ -86503,7 +86507,7 @@ struct MenuFlyoutItem :
 
 struct MenuFlyoutPresenter :
 	Windows::UI::Xaml::Controls::IMenuFlyoutPresenter,
-	Bases<MenuFlyoutPresenter, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ItemsControl>,
+	Bases<MenuFlyoutPresenter, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ItemsControl>,
 	Requires<MenuFlyoutPresenter, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IItemsControl, Windows::UI::Xaml::Controls::IItemsControl2, Windows::UI::Xaml::Controls::IItemContainerMapping, Windows::UI::Xaml::Controls::IItemsControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	MenuFlyoutPresenter(std::nullptr_t) noexcept {}
@@ -86512,7 +86516,7 @@ struct MenuFlyoutPresenter :
 
 struct MenuFlyoutSeparator :
 	Windows::UI::Xaml::Controls::IMenuFlyoutSeparator,
-	Bases<MenuFlyoutSeparator, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::MenuFlyoutItemBase>,
+	Bases<MenuFlyoutSeparator, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::MenuFlyoutItemBase>,
 	Requires<MenuFlyoutSeparator, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IMenuFlyoutItemBase, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	MenuFlyoutSeparator(std::nullptr_t) noexcept {}
@@ -86521,7 +86525,7 @@ struct MenuFlyoutSeparator :
 
 struct Page :
 	Windows::UI::Xaml::Controls::IPage,
-	Bases<Page, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::UserControl>,
+	Bases<Page, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::UserControl>,
 	Requires<Page, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IUserControl, Windows::UI::Xaml::Controls::IPageOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	Page(std::nullptr_t) noexcept {}
@@ -86533,7 +86537,7 @@ struct Page :
 
 struct SearchBox :
 	Windows::UI::Xaml::Controls::ISearchBox,
-	Bases<SearchBox, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
+	Bases<SearchBox, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
 	Requires<SearchBox, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	SearchBox(std::nullptr_t) noexcept {}
@@ -86548,7 +86552,7 @@ struct SearchBox :
 
 struct TimePicker :
 	Windows::UI::Xaml::Controls::ITimePicker,
-	Bases<TimePicker, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
+	Bases<TimePicker, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
 	Requires<TimePicker, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	TimePicker(std::nullptr_t) noexcept {}
@@ -86562,7 +86566,7 @@ struct TimePicker :
 
 struct ToggleMenuFlyoutItem :
 	Windows::UI::Xaml::Controls::IToggleMenuFlyoutItem,
-	Bases<ToggleMenuFlyoutItem, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::MenuFlyoutItemBase, Windows::UI::Xaml::Controls::MenuFlyoutItem>,
+	Bases<ToggleMenuFlyoutItem, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::MenuFlyoutItemBase, Windows::UI::Xaml::Controls::MenuFlyoutItem>,
 	Requires<ToggleMenuFlyoutItem, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IMenuFlyoutItemBase, Windows::UI::Xaml::Controls::IMenuFlyoutItem, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	ToggleMenuFlyoutItem(std::nullptr_t) noexcept {}
@@ -86571,7 +86575,9 @@ struct ToggleMenuFlyoutItem :
 };
 
 struct ControlTemplate :
-	Windows::UI::Xaml::Controls::IControlTemplate
+	Windows::UI::Xaml::Controls::IControlTemplate,
+	Bases<ControlTemplate, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkTemplate>,
+	Requires<ControlTemplate, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IFrameworkTemplate>
 {
 	ControlTemplate(std::nullptr_t) noexcept {}
 	ControlTemplate();
@@ -86583,7 +86589,7 @@ namespace Modern { namespace Windows { namespace UI { namespace Xaml { namespace
 
 struct Popup :
 	Windows::UI::Xaml::Controls::Primitives::IPopup,
-	Bases<Popup, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement>,
+	Bases<Popup, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement>,
 	Requires<Popup, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	Popup(std::nullptr_t) noexcept {}
@@ -86687,34 +86693,44 @@ struct GeneratorPositionHelper :
 };
 
 struct DragCompletedEventArgs :
-	Windows::UI::Xaml::Controls::Primitives::IDragCompletedEventArgs
+	Windows::UI::Xaml::Controls::Primitives::IDragCompletedEventArgs,
+	Bases<DragCompletedEventArgs, Windows::UI::Xaml::RoutedEventArgs>,
+	Requires<DragCompletedEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	DragCompletedEventArgs(std::nullptr_t) noexcept {}
 	DragCompletedEventArgs(double horizontalChange, double verticalChange, bool canceled);
 };
 
 struct DragDeltaEventArgs :
-	Windows::UI::Xaml::Controls::Primitives::IDragDeltaEventArgs
+	Windows::UI::Xaml::Controls::Primitives::IDragDeltaEventArgs,
+	Bases<DragDeltaEventArgs, Windows::UI::Xaml::RoutedEventArgs>,
+	Requires<DragDeltaEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	DragDeltaEventArgs(std::nullptr_t) noexcept {}
 	DragDeltaEventArgs(double horizontalChange, double verticalChange);
 };
 
 struct DragStartedEventArgs :
-	Windows::UI::Xaml::Controls::Primitives::IDragStartedEventArgs
+	Windows::UI::Xaml::Controls::Primitives::IDragStartedEventArgs,
+	Bases<DragStartedEventArgs, Windows::UI::Xaml::RoutedEventArgs>,
+	Requires<DragStartedEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	DragStartedEventArgs(std::nullptr_t) noexcept {}
 	DragStartedEventArgs(double horizontalOffset, double verticalOffset);
 };
 
 struct RangeBaseValueChangedEventArgs :
-	Windows::UI::Xaml::Controls::Primitives::IRangeBaseValueChangedEventArgs
+	Windows::UI::Xaml::Controls::Primitives::IRangeBaseValueChangedEventArgs,
+	Bases<RangeBaseValueChangedEventArgs, Windows::UI::Xaml::RoutedEventArgs>,
+	Requires<RangeBaseValueChangedEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	RangeBaseValueChangedEventArgs(std::nullptr_t) noexcept {}
 };
 
 struct ScrollEventArgs :
-	Windows::UI::Xaml::Controls::Primitives::IScrollEventArgs
+	Windows::UI::Xaml::Controls::Primitives::IScrollEventArgs,
+	Bases<ScrollEventArgs, Windows::UI::Xaml::RoutedEventArgs>,
+	Requires<ScrollEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	ScrollEventArgs(std::nullptr_t) noexcept {}
 	ScrollEventArgs();
@@ -86722,7 +86738,8 @@ struct ScrollEventArgs :
 
 struct CarouselPanel :
 	Windows::UI::Xaml::Controls::Primitives::ICarouselPanel,
-	Requires<CarouselPanel, Windows::UI::Xaml::Controls::Primitives::IScrollSnapPointsInfo>
+	Bases<CarouselPanel, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::VirtualizingPanel, Windows::UI::Xaml::Controls::Panel>,
+	Requires<CarouselPanel, Windows::UI::Xaml::Controls::Primitives::IScrollSnapPointsInfo, Windows::UI::Xaml::Controls::IPanel, Windows::UI::Xaml::Controls::IVirtualizingPanel, Windows::UI::Xaml::Controls::IVirtualizingPanelOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	CarouselPanel(std::nullptr_t) noexcept {}
 	CarouselPanel();
@@ -86730,14 +86747,15 @@ struct CarouselPanel :
 
 struct OrientedVirtualizingPanel :
 	Windows::UI::Xaml::Controls::Primitives::IOrientedVirtualizingPanel,
-	Requires<OrientedVirtualizingPanel, Windows::UI::Xaml::Controls::Primitives::IScrollSnapPointsInfo>
+	Bases<OrientedVirtualizingPanel, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::VirtualizingPanel, Windows::UI::Xaml::Controls::Panel>,
+	Requires<OrientedVirtualizingPanel, Windows::UI::Xaml::Controls::Primitives::IScrollSnapPointsInfo, Windows::UI::Xaml::Controls::IPanel, Windows::UI::Xaml::Controls::IVirtualizingPanel, Windows::UI::Xaml::Controls::IVirtualizingPanelOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	OrientedVirtualizingPanel(std::nullptr_t) noexcept {}
 };
 
 struct TickBar :
 	Windows::UI::Xaml::Controls::Primitives::ITickBar,
-	Bases<TickBar, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement>,
+	Bases<TickBar, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement>,
 	Requires<TickBar, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	TickBar(std::nullptr_t) noexcept {}
@@ -86746,7 +86764,9 @@ struct TickBar :
 };
 
 struct GridViewItemPresenter :
-	Windows::UI::Xaml::Controls::Primitives::IGridViewItemPresenter
+	Windows::UI::Xaml::Controls::Primitives::IGridViewItemPresenter,
+	Bases<GridViewItemPresenter, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentPresenter>,
+	Requires<GridViewItemPresenter, Windows::UI::Xaml::Controls::IContentPresenter, Windows::UI::Xaml::Controls::IContentPresenter2, Windows::UI::Xaml::Controls::IContentPresenterOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	GridViewItemPresenter(std::nullptr_t) noexcept {}
 	GridViewItemPresenter();
@@ -86775,7 +86795,9 @@ struct GridViewItemPresenter :
 };
 
 struct ListViewItemPresenter :
-	Windows::UI::Xaml::Controls::Primitives::IListViewItemPresenter
+	Windows::UI::Xaml::Controls::Primitives::IListViewItemPresenter,
+	Bases<ListViewItemPresenter, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentPresenter>,
+	Requires<ListViewItemPresenter, Windows::UI::Xaml::Controls::IContentPresenter, Windows::UI::Xaml::Controls::IContentPresenter2, Windows::UI::Xaml::Controls::IContentPresenterOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	ListViewItemPresenter(std::nullptr_t) noexcept {}
 	ListViewItemPresenter();
@@ -86804,14 +86826,18 @@ struct ListViewItemPresenter :
 };
 
 struct SelectorItem :
-	Windows::UI::Xaml::Controls::Primitives::ISelectorItem
+	Windows::UI::Xaml::Controls::Primitives::ISelectorItem,
+	Bases<SelectorItem, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl>,
+	Requires<SelectorItem, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	SelectorItem(std::nullptr_t) noexcept {}
 	static Windows::UI::Xaml::DependencyProperty IsSelectedProperty();
 };
 
 struct ButtonBase :
-	Windows::UI::Xaml::Controls::Primitives::IButtonBase
+	Windows::UI::Xaml::Controls::Primitives::IButtonBase,
+	Bases<ButtonBase, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ContentControl>,
+	Requires<ButtonBase, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	ButtonBase(std::nullptr_t) noexcept {}
 	static Windows::UI::Xaml::DependencyProperty ClickModeProperty();
@@ -86823,7 +86849,7 @@ struct ButtonBase :
 
 struct RangeBase :
 	Windows::UI::Xaml::Controls::Primitives::IRangeBase,
-	Bases<RangeBase, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
+	Bases<RangeBase, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
 	Requires<RangeBase, Windows::UI::Xaml::Controls::Primitives::IRangeBaseOverrides, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	RangeBase(std::nullptr_t) noexcept {}
@@ -86836,8 +86862,8 @@ struct RangeBase :
 
 struct RepeatButton :
 	Windows::UI::Xaml::Controls::Primitives::IRepeatButton,
-	Bases<RepeatButton, Windows::UI::Xaml::Controls::Primitives::ButtonBase>,
-	Requires<RepeatButton, Windows::UI::Xaml::Controls::Primitives::IButtonBase>
+	Bases<RepeatButton, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::ButtonBase, Windows::UI::Xaml::Controls::ContentControl>,
+	Requires<RepeatButton, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	RepeatButton(std::nullptr_t) noexcept {}
 	RepeatButton();
@@ -86847,7 +86873,7 @@ struct RepeatButton :
 
 struct ScrollBar :
 	Windows::UI::Xaml::Controls::Primitives::IScrollBar,
-	Bases<ScrollBar, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::RangeBase>,
+	Bases<ScrollBar, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::RangeBase>,
 	Requires<ScrollBar, Windows::UI::Xaml::Controls::Primitives::IRangeBase, Windows::UI::Xaml::Controls::Primitives::IRangeBaseOverrides, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	ScrollBar(std::nullptr_t) noexcept {}
@@ -86858,7 +86884,9 @@ struct ScrollBar :
 };
 
 struct Selector :
-	Windows::UI::Xaml::Controls::Primitives::ISelector
+	Windows::UI::Xaml::Controls::Primitives::ISelector,
+	Bases<Selector, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::ItemsControl>,
+	Requires<Selector, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IItemsControl, Windows::UI::Xaml::Controls::IItemsControl2, Windows::UI::Xaml::Controls::IItemContainerMapping, Windows::UI::Xaml::Controls::IItemsControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	Selector(std::nullptr_t) noexcept {}
 	static Windows::UI::Xaml::DependencyProperty SelectedIndexProperty();
@@ -86871,7 +86899,7 @@ struct Selector :
 
 struct Thumb :
 	Windows::UI::Xaml::Controls::Primitives::IThumb,
-	Bases<Thumb, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
+	Bases<Thumb, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement>,
 	Requires<Thumb, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	Thumb(std::nullptr_t) noexcept {}
@@ -86881,8 +86909,8 @@ struct Thumb :
 
 struct ToggleButton :
 	Windows::UI::Xaml::Controls::Primitives::IToggleButton,
-	Bases<ToggleButton, Windows::UI::Xaml::Controls::Primitives::ButtonBase>,
-	Requires<ToggleButton, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::Primitives::IToggleButtonOverrides>
+	Bases<ToggleButton, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::Controls::Control, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Controls::Primitives::ButtonBase, Windows::UI::Xaml::Controls::ContentControl>,
+	Requires<ToggleButton, Windows::UI::Xaml::Controls::Primitives::IButtonBase, Windows::UI::Xaml::Controls::Primitives::IToggleButtonOverrides, Windows::UI::Xaml::Controls::IControl, Windows::UI::Xaml::Controls::IControlOverrides, Windows::UI::Xaml::Controls::IContentControl, Windows::UI::Xaml::Controls::IContentControl2, Windows::UI::Xaml::Controls::IContentControlOverrides, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	ToggleButton(std::nullptr_t) noexcept {}
 	ToggleButton();
@@ -87257,14 +87285,16 @@ struct Hyperlink :
 };
 
 struct HyperlinkClickEventArgs :
-	Windows::UI::Xaml::Documents::IHyperlinkClickEventArgs
+	Windows::UI::Xaml::Documents::IHyperlinkClickEventArgs,
+	Bases<HyperlinkClickEventArgs, Windows::UI::Xaml::RoutedEventArgs>,
+	Requires<HyperlinkClickEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	HyperlinkClickEventArgs(std::nullptr_t) noexcept {}
 };
 
 struct Glyphs :
 	Windows::UI::Xaml::Documents::IGlyphs,
-	Bases<Glyphs, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement>,
+	Bases<Glyphs, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement>,
 	Requires<Glyphs, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	Glyphs(std::nullptr_t) noexcept {}
@@ -87306,7 +87336,9 @@ struct Pointer :
 };
 
 struct DoubleTappedRoutedEventArgs :
-	Windows::UI::Xaml::Input::IDoubleTappedRoutedEventArgs
+	Windows::UI::Xaml::Input::IDoubleTappedRoutedEventArgs,
+	Bases<DoubleTappedRoutedEventArgs, Windows::UI::Xaml::RoutedEventArgs>,
+	Requires<DoubleTappedRoutedEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	DoubleTappedRoutedEventArgs(std::nullptr_t) noexcept {}
 	DoubleTappedRoutedEventArgs();
@@ -87321,7 +87353,9 @@ struct FocusManager :
 };
 
 struct HoldingRoutedEventArgs :
-	Windows::UI::Xaml::Input::IHoldingRoutedEventArgs
+	Windows::UI::Xaml::Input::IHoldingRoutedEventArgs,
+	Bases<HoldingRoutedEventArgs, Windows::UI::Xaml::RoutedEventArgs>,
+	Requires<HoldingRoutedEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	HoldingRoutedEventArgs(std::nullptr_t) noexcept {}
 	HoldingRoutedEventArgs();
@@ -87346,14 +87380,18 @@ struct InertiaTranslationBehavior :
 };
 
 struct InputScope :
-	Windows::UI::Xaml::Input::IInputScope
+	Windows::UI::Xaml::Input::IInputScope,
+	Bases<InputScope, Windows::UI::Xaml::DependencyObject>,
+	Requires<InputScope, Windows::UI::Xaml::IDependencyObject>
 {
 	InputScope(std::nullptr_t) noexcept {}
 	InputScope();
 };
 
 struct InputScopeName :
-	Windows::UI::Xaml::Input::IInputScopeName
+	Windows::UI::Xaml::Input::IInputScopeName,
+	Bases<InputScopeName, Windows::UI::Xaml::DependencyObject>,
+	Requires<InputScopeName, Windows::UI::Xaml::IDependencyObject>
 {
 	InputScopeName(std::nullptr_t) noexcept {}
 	InputScopeName();
@@ -87361,27 +87399,35 @@ struct InputScopeName :
 };
 
 struct KeyRoutedEventArgs :
-	Windows::UI::Xaml::Input::IKeyRoutedEventArgs
+	Windows::UI::Xaml::Input::IKeyRoutedEventArgs,
+	Bases<KeyRoutedEventArgs, Windows::UI::Xaml::RoutedEventArgs>,
+	Requires<KeyRoutedEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	KeyRoutedEventArgs(std::nullptr_t) noexcept {}
 };
 
 struct ManipulationCompletedRoutedEventArgs :
-	Windows::UI::Xaml::Input::IManipulationCompletedRoutedEventArgs
+	Windows::UI::Xaml::Input::IManipulationCompletedRoutedEventArgs,
+	Bases<ManipulationCompletedRoutedEventArgs, Windows::UI::Xaml::RoutedEventArgs>,
+	Requires<ManipulationCompletedRoutedEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	ManipulationCompletedRoutedEventArgs(std::nullptr_t) noexcept {}
 	ManipulationCompletedRoutedEventArgs();
 };
 
 struct ManipulationDeltaRoutedEventArgs :
-	Windows::UI::Xaml::Input::IManipulationDeltaRoutedEventArgs
+	Windows::UI::Xaml::Input::IManipulationDeltaRoutedEventArgs,
+	Bases<ManipulationDeltaRoutedEventArgs, Windows::UI::Xaml::RoutedEventArgs>,
+	Requires<ManipulationDeltaRoutedEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	ManipulationDeltaRoutedEventArgs(std::nullptr_t) noexcept {}
 	ManipulationDeltaRoutedEventArgs();
 };
 
 struct ManipulationInertiaStartingRoutedEventArgs :
-	Windows::UI::Xaml::Input::IManipulationInertiaStartingRoutedEventArgs
+	Windows::UI::Xaml::Input::IManipulationInertiaStartingRoutedEventArgs,
+	Bases<ManipulationInertiaStartingRoutedEventArgs, Windows::UI::Xaml::RoutedEventArgs>,
+	Requires<ManipulationInertiaStartingRoutedEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	ManipulationInertiaStartingRoutedEventArgs(std::nullptr_t) noexcept {}
 	ManipulationInertiaStartingRoutedEventArgs();
@@ -87396,34 +87442,44 @@ struct ManipulationPivot :
 };
 
 struct ManipulationStartedRoutedEventArgs :
-	Windows::UI::Xaml::Input::IManipulationStartedRoutedEventArgs
+	Windows::UI::Xaml::Input::IManipulationStartedRoutedEventArgs,
+	Bases<ManipulationStartedRoutedEventArgs, Windows::UI::Xaml::RoutedEventArgs>,
+	Requires<ManipulationStartedRoutedEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	ManipulationStartedRoutedEventArgs(std::nullptr_t) noexcept {}
 	ManipulationStartedRoutedEventArgs();
 };
 
 struct ManipulationStartingRoutedEventArgs :
-	Windows::UI::Xaml::Input::IManipulationStartingRoutedEventArgs
+	Windows::UI::Xaml::Input::IManipulationStartingRoutedEventArgs,
+	Bases<ManipulationStartingRoutedEventArgs, Windows::UI::Xaml::RoutedEventArgs>,
+	Requires<ManipulationStartingRoutedEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	ManipulationStartingRoutedEventArgs(std::nullptr_t) noexcept {}
 	ManipulationStartingRoutedEventArgs();
 };
 
 struct PointerRoutedEventArgs :
-	Windows::UI::Xaml::Input::IPointerRoutedEventArgs
+	Windows::UI::Xaml::Input::IPointerRoutedEventArgs,
+	Bases<PointerRoutedEventArgs, Windows::UI::Xaml::RoutedEventArgs>,
+	Requires<PointerRoutedEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	PointerRoutedEventArgs(std::nullptr_t) noexcept {}
 };
 
 struct RightTappedRoutedEventArgs :
-	Windows::UI::Xaml::Input::IRightTappedRoutedEventArgs
+	Windows::UI::Xaml::Input::IRightTappedRoutedEventArgs,
+	Bases<RightTappedRoutedEventArgs, Windows::UI::Xaml::RoutedEventArgs>,
+	Requires<RightTappedRoutedEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	RightTappedRoutedEventArgs(std::nullptr_t) noexcept {}
 	RightTappedRoutedEventArgs();
 };
 
 struct TappedRoutedEventArgs :
-	Windows::UI::Xaml::Input::ITappedRoutedEventArgs
+	Windows::UI::Xaml::Input::ITappedRoutedEventArgs,
+	Bases<TappedRoutedEventArgs, Windows::UI::Xaml::RoutedEventArgs>,
+	Requires<TappedRoutedEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	TappedRoutedEventArgs(std::nullptr_t) noexcept {}
 	TappedRoutedEventArgs();
@@ -87799,7 +87855,9 @@ struct QuadraticBezierSegment :
 };
 
 struct RateChangedRoutedEventArgs :
-	Windows::UI::Xaml::Media::IRateChangedRoutedEventArgs
+	Windows::UI::Xaml::Media::IRateChangedRoutedEventArgs,
+	Bases<RateChangedRoutedEventArgs, Windows::UI::Xaml::RoutedEventArgs>,
+	Requires<RateChangedRoutedEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	RateChangedRoutedEventArgs(std::nullptr_t) noexcept {}
 	RateChangedRoutedEventArgs();
@@ -87873,7 +87931,9 @@ struct TimelineMarkerCollection :
 };
 
 struct TimelineMarkerRoutedEventArgs :
-	Windows::UI::Xaml::Media::ITimelineMarkerRoutedEventArgs
+	Windows::UI::Xaml::Media::ITimelineMarkerRoutedEventArgs,
+	Bases<TimelineMarkerRoutedEventArgs, Windows::UI::Xaml::RoutedEventArgs>,
+	Requires<TimelineMarkerRoutedEventArgs, Windows::UI::Xaml::IRoutedEventArgs>
 {
 	TimelineMarkerRoutedEventArgs(std::nullptr_t) noexcept {}
 	TimelineMarkerRoutedEventArgs();
@@ -88039,7 +88099,9 @@ struct TransitionCollection :
 };
 
 struct BeginStoryboard :
-	Windows::UI::Xaml::Media::Animation::IBeginStoryboard
+	Windows::UI::Xaml::Media::Animation::IBeginStoryboard,
+	Bases<BeginStoryboard, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::TriggerAction>,
+	Requires<BeginStoryboard, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::ITriggerAction>
 {
 	BeginStoryboard(std::nullptr_t) noexcept {}
 	BeginStoryboard();
@@ -88931,7 +88993,7 @@ namespace Modern { namespace Windows { namespace UI { namespace Xaml { namespace
 
 struct Shape :
 	Windows::UI::Xaml::Shapes::IShape,
-	Bases<Shape, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement>,
+	Bases<Shape, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement>,
 	Requires<Shape, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2>
 {
 	Shape(std::nullptr_t) noexcept {}
@@ -88950,7 +89012,7 @@ struct Shape :
 
 struct Ellipse :
 	Windows::UI::Xaml::Shapes::IEllipse,
-	Bases<Ellipse, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Shapes::Shape>,
+	Bases<Ellipse, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Shapes::Shape>,
 	Requires<Ellipse, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2, Windows::UI::Xaml::Shapes::IShape>
 {
 	Ellipse(std::nullptr_t) noexcept {}
@@ -88959,7 +89021,7 @@ struct Ellipse :
 
 struct Line :
 	Windows::UI::Xaml::Shapes::ILine,
-	Bases<Line, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Shapes::Shape>,
+	Bases<Line, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Shapes::Shape>,
 	Requires<Line, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2, Windows::UI::Xaml::Shapes::IShape>
 {
 	Line(std::nullptr_t) noexcept {}
@@ -88972,7 +89034,7 @@ struct Line :
 
 struct Path :
 	Windows::UI::Xaml::Shapes::IPath,
-	Bases<Path, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Shapes::Shape>,
+	Bases<Path, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Shapes::Shape>,
 	Requires<Path, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2, Windows::UI::Xaml::Shapes::IShape>
 {
 	Path(std::nullptr_t) noexcept {}
@@ -88982,7 +89044,7 @@ struct Path :
 
 struct Polygon :
 	Windows::UI::Xaml::Shapes::IPolygon,
-	Bases<Polygon, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Shapes::Shape>,
+	Bases<Polygon, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Shapes::Shape>,
 	Requires<Polygon, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2, Windows::UI::Xaml::Shapes::IShape>
 {
 	Polygon(std::nullptr_t) noexcept {}
@@ -88993,7 +89055,7 @@ struct Polygon :
 
 struct Polyline :
 	Windows::UI::Xaml::Shapes::IPolyline,
-	Bases<Polyline, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Shapes::Shape>,
+	Bases<Polyline, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Shapes::Shape>,
 	Requires<Polyline, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2, Windows::UI::Xaml::Shapes::IShape>
 {
 	Polyline(std::nullptr_t) noexcept {}
@@ -89004,7 +89066,7 @@ struct Polyline :
 
 struct Rectangle :
 	Windows::UI::Xaml::Shapes::IRectangle,
-	Bases<Rectangle, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Shapes::Shape>,
+	Bases<Rectangle, Windows::UI::Xaml::DependencyObject, Windows::UI::Xaml::UIElement, Windows::UI::Xaml::FrameworkElement, Windows::UI::Xaml::Shapes::Shape>,
 	Requires<Rectangle, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IUIElement, Windows::UI::Xaml::IUIElement2, Windows::UI::Xaml::IUIElementOverrides, Windows::UI::Xaml::IFrameworkElement, Windows::UI::Xaml::IFrameworkElement2, Windows::UI::Xaml::IFrameworkElementOverrides, Windows::UI::Xaml::IFrameworkElementOverrides2, Windows::UI::Xaml::Shapes::IShape>
 {
 	Rectangle(std::nullptr_t) noexcept {}

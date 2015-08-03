@@ -1,4 +1,4 @@
-// Modern v1.23 - http://moderncpp.com
+// Modern v1.25 - http://moderncpp.com
 // Copyright (c) 2015 Kenny Kerr
 
 #pragma once
@@ -9,3 +9,5 @@
 #include <modern\sdk.meta.h>
 #include <modern\sdk.shim.h>
 #include <modern\sdk.extend.h>
+
+#include <modern\await.h>
