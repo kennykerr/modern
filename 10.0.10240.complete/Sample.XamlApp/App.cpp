@@ -3,6 +3,7 @@
 using namespace Modern;
 
 using namespace Windows::ApplicationModel::Activation;
+using namespace Windows::Foundation;
 using namespace Windows::UI;
 using namespace Windows::UI::Xaml;
 using namespace Windows::UI::Xaml::Controls;
@@ -15,6 +16,13 @@ public:
     void OnLaunched(LaunchActivatedEventArgs const &)
     {
         TextBlock text;
+
+        text.RegisterPropertyChangedCallback(text.TextProperty(), [](DependencyObject const & object, DependencyProperty const & property)
+        {
+            IPropertyValue value = object.GetValue(property).As<IPropertyValue>();
+
+            MODERN_TRACE(L"%ls\n", value.GetString().Buffer());
+        });
 
         text.Text(L"Modern C++\nfor the\nWindows Runtime");
         text.FontFamily(FontFamily(L"Segoe UI Semibold"));
