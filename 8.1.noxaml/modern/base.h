@@ -1,4 +1,4 @@
-// Modern v1.25 - http://moderncpp.com
+// Modern v1.26 - http://moderncpp.com
 // Copyright (c) 2015 Kenny Kerr
 
 #pragma once
@@ -465,7 +465,18 @@ struct ImplementsDefault : Implements<Abi<T>>
 	using Default = T;
 };
 
+template <> struct Traits<String>
+{
+	using Abi = HSTRING;
+};
+
 }
+
+namespace Modern { namespace ABI {
+
+using String = HSTRING;
+
+}}
 
 namespace Modern { namespace ABI { namespace Windows {
 

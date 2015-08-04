@@ -1,4 +1,4 @@
-// Modern v1.25 - http://moderncpp.com
+// Modern v1.26 - http://moderncpp.com
 // Copyright (c) 2015 Kenny Kerr
 
 #include <ctxtcall.h>
