@@ -23,15 +23,15 @@ class __declspec(novtable) Implements : public Interfaces ...
 	struct IsCloaked<Cloaked<Interface>> : std::true_type {};
 
 	template <int = 0>
-	constexpr unsigned CounInterfaces() const noexcept
+	constexpr unsigned CountInterfaces() const noexcept
 	{
 		return 0;
 	}
 
 	template <typename First, typename ... Rest>
-	constexpr unsigned CounInterfaces() const noexcept
+	constexpr unsigned CountInterfaces() const noexcept
 	{
-		return !IsCloaked<First>::value + CounInterfaces<Rest ...>();
+		return !IsCloaked<First>::value + CountInterfaces<Rest ...>();
 	}
 
 	template <int = 0>
@@ -169,7 +169,7 @@ public:
 		*count = 0;
 		*array = nullptr;
 
-		unsigned const localCount = CounInterfaces<Interfaces ...>();
+		unsigned const localCount = CountInterfaces<Interfaces ...>();
 
 		if (0 == localCount)
 		{

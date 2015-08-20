@@ -308,6 +308,35 @@ private:
 	Handle<StringTraits> m_handle;
 };
 
+inline bool operator==(String const & left, String const & right)
+{
+    int result = 0;
+    check(WindowsCompareStringOrdinal(get(left), get(right), &result));
+    return result == 0;
+}
+inline bool operator!=(String const & left, String const & right)
+{
+    return !(left == right);
+}
+inline bool operator<(String const & left, String const & right)
+{
+    int result = 0;
+    check(WindowsCompareStringOrdinal(get(left), get(right), &result));
+    return result == -1;
+}
+inline bool operator>(String const & left, String const & right)
+{
+    return right < left;
+}
+inline bool operator<=(String const & left, String const & right)
+{
+    return !(right < left);
+}
+inline bool operator>=(String const & left, String const & right)
+{
+    return !(left < right);
+}
+
 template <typename To>
 struct Lease : To
 {
@@ -460,7 +489,7 @@ Lease<To> forward(From value) noexcept
 }
 
 template <typename T>
-struct ImplementsDefault : Implements<Abi<T>>
+struct ImplementsDefault : Implements<Abi<T>, ::IAgileObject>
 {
 	using Default = T;
 };
