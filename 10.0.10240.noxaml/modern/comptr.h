@@ -78,28 +78,24 @@ public:
 		return static_cast<NoAddRefRelease<T> *>(m_ptr);
 	}
 
-	template <typename T>
-	friend T * get(ComPtr<T> const & object) noexcept
+	friend T * get(ComPtr const & object) noexcept
 	{
 		return object.m_ptr;
 	}
 
-	template <typename T>
-	friend T ** set(ComPtr<T> & object) noexcept
+	friend T ** set(ComPtr & object) noexcept
 	{
 		MODERN_ASSERT(object.m_ptr == nullptr);
 		return &object.m_ptr;
 	}
 
-	template <typename T, typename C>
-	friend void attach(ComPtr<T> & object, C * value) noexcept
+	friend void attach(ComPtr & object, T * value) noexcept
 	{
 		object.InternalRelease();
 		object.m_ptr = value;
 	}
 
-	template <typename T>
-	friend T * detach(ComPtr<T> & object) noexcept
+	friend T * detach(ComPtr & object) noexcept
 	{
 		T * temp = object.m_ptr;
 		object.m_ptr = nullptr;

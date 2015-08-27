@@ -310,31 +310,31 @@ private:
 
 inline bool operator==(String const & left, String const & right)
 {
-    int result = 0;
-    check(WindowsCompareStringOrdinal(get(left), get(right), &result));
-    return result == 0;
+	int result = 0;
+	check(WindowsCompareStringOrdinal(get(left), get(right), &result));
+	return result == 0;
 }
 inline bool operator!=(String const & left, String const & right)
 {
-    return !(left == right);
+	return !(left == right);
 }
 inline bool operator<(String const & left, String const & right)
 {
-    int result = 0;
-    check(WindowsCompareStringOrdinal(get(left), get(right), &result));
-    return result == -1;
+	int result = 0;
+	check(WindowsCompareStringOrdinal(get(left), get(right), &result));
+	return result == -1;
 }
 inline bool operator>(String const & left, String const & right)
 {
-    return right < left;
+	return right < left;
 }
 inline bool operator<=(String const & left, String const & right)
 {
-    return !(right < left);
+	return !(right < left);
 }
 inline bool operator>=(String const & left, String const & right)
 {
-    return !(left < right);
+	return !(left < right);
 }
 
 template <typename To>
