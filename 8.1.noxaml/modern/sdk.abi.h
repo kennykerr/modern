@@ -8450,9 +8450,9 @@ struct __declspec(uuid("0e09fd91-42f8-4055-90a0-896f96738936")) __declspec(novta
 	virtual HRESULT __stdcall put_CommitButtonText(HSTRING value) = 0;
 	virtual HRESULT __stdcall get_SelectionMode(Modern::Windows::ApplicationModel::Contacts::ContactSelectionMode * value) = 0;
 	virtual HRESULT __stdcall put_SelectionMode(Modern::Windows::ApplicationModel::Contacts::ContactSelectionMode value) = 0;
-	virtual HRESULT __stdcall deprecated_1() = 0;
-	virtual HRESULT __stdcall deprecated_2() = 0;
-	virtual HRESULT __stdcall deprecated_3() = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
+	virtual HRESULT __stdcall reserved_2() = 0;
+	virtual HRESULT __stdcall reserved_3() = 0;
 };
 
 struct __declspec(uuid("b35011cf-5cef-4d24-aa0c-340c5208725d")) __declspec(novtable) IContactPicker2 : ::IInspectable
@@ -8580,11 +8580,11 @@ struct __declspec(uuid("6d117b4c-ce50-4b43-9e69-b18258ea5315")) __declspec(novta
 
 struct __declspec(uuid("ec0072f3-2118-4049-9ebc-17f0ab692b64")) __declspec(novtable) IContact : ::IInspectable
 {
-	virtual HRESULT __stdcall deprecated_1() = 0;
-	virtual HRESULT __stdcall deprecated_2() = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
+	virtual HRESULT __stdcall reserved_2() = 0;
 	virtual HRESULT __stdcall get_Thumbnail(Windows::Storage::Streams::IRandomAccessStreamReference ** value) = 0;
 	virtual HRESULT __stdcall put_Thumbnail(Windows::Storage::Streams::IRandomAccessStreamReference * value) = 0;
-	virtual HRESULT __stdcall deprecated_3() = 0;
+	virtual HRESULT __stdcall reserved_3() = 0;
 };
 
 struct __declspec(uuid("f312f365-bb77-4c94-802d-8328cee40c08")) __declspec(novtable) IContact2 : ::IInspectable
@@ -8621,10 +8621,10 @@ struct __declspec(uuid("6f354338-3302-4d13-ad8d-adcc0ff9e47c")) __declspec(novta
 
 struct __declspec(uuid("e2cc1366-cf66-43c4-a96a-a5a112db4746")) __declspec(novtable) IContactPickerUI : ::IInspectable
 {
-	virtual HRESULT __stdcall deprecated_1() = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
 	virtual HRESULT __stdcall abi_RemoveContact(HSTRING id) = 0;
 	virtual HRESULT __stdcall abi_ContainsContact(HSTRING id, boolean * isContained) = 0;
-	virtual HRESULT __stdcall deprecated_2() = 0;
+	virtual HRESULT __stdcall reserved_2() = 0;
 	virtual HRESULT __stdcall get_SelectionMode(Modern::Windows::ApplicationModel::Contacts::ContactSelectionMode * value) = 0;
 	virtual HRESULT __stdcall add_ContactRemoved(Windows::Foundation::ITypedEventHandler<Windows::ApplicationModel::Contacts::Provider::ContactPickerUI, Windows::ApplicationModel::Contacts::Provider::ContactRemovedEventArgs> * handler, EventRegistrationToken * token) = 0;
 	virtual HRESULT __stdcall remove_ContactRemoved(EventRegistrationToken token) = 0;
@@ -8735,7 +8735,7 @@ struct __declspec(uuid("e7ecd720-f2f4-4a2d-920e-170a2f482a27")) __declspec(novta
 struct __declspec(uuid("7ed681a1-a880-40c9-b4ed-0bee1e15f549")) __declspec(novtable) IStandardDataFormatsStatics : ::IInspectable
 {
 	virtual HRESULT __stdcall get_Text(HSTRING * value) = 0;
-	virtual HRESULT __stdcall deprecated_1() = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
 	virtual HRESULT __stdcall get_Html(HSTRING * value) = 0;
 	virtual HRESULT __stdcall get_Rtf(HSTRING * value) = 0;
 	virtual HRESULT __stdcall get_Bitmap(HSTRING * value) = 0;
@@ -8824,7 +8824,7 @@ struct __declspec(uuid("7b840471-5900-4d85-a90b-10cb85fe3552")) __declspec(novta
 	virtual HRESULT __stdcall abi_GetDataAsync(HSTRING formatId, Windows::Foundation::IAsyncOperation<IInspectable> ** operation) = 0;
 	virtual HRESULT __stdcall abi_GetTextAsync(Windows::Foundation::IAsyncOperation<String> ** operation) = 0;
 	virtual HRESULT __stdcall abi_GetCustomTextAsync(HSTRING formatId, Windows::Foundation::IAsyncOperation<String> ** operation) = 0;
-	virtual HRESULT __stdcall deprecated_1() = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
 	virtual HRESULT __stdcall abi_GetHtmlFormatAsync(Windows::Foundation::IAsyncOperation<String> ** operation) = 0;
 	virtual HRESULT __stdcall abi_GetResourceMapAsync(Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IMapView<String, Windows::Storage::Streams::RandomAccessStreamReference>> ** operation) = 0;
 	virtual HRESULT __stdcall abi_GetRtfAsync(Windows::Foundation::IAsyncOperation<String> ** operation) = 0;
@@ -8851,7 +8851,7 @@ struct __declspec(uuid("61ebf5c7-efea-4346-9554-981d7e198ffe")) __declspec(novta
 	virtual HRESULT __stdcall abi_SetData(HSTRING formatId, IInspectable * value) = 0;
 	virtual HRESULT __stdcall abi_SetDataProvider(HSTRING formatId, Windows::ApplicationModel::DataTransfer::IDataProviderHandler * delayRenderer) = 0;
 	virtual HRESULT __stdcall abi_SetText(HSTRING value) = 0;
-	virtual HRESULT __stdcall deprecated_1() = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
 	virtual HRESULT __stdcall abi_SetHtmlFormat(HSTRING value) = 0;
 	virtual HRESULT __stdcall get_ResourceMap(Windows::Foundation::Collections::IMap<String, Windows::Storage::Streams::RandomAccessStreamReference> ** value) = 0;
 	virtual HRESULT __stdcall abi_SetRtf(HSTRING value) = 0;
@@ -8993,7 +8993,7 @@ struct __declspec(uuid("f744d97b-9988-44fb-abd6-5378844cfa8b")) __declspec(novta
 {
 	virtual HRESULT __stdcall get_MainResourceMap(Windows::ApplicationModel::Resources::Core::IResourceMap ** value) = 0;
 	virtual HRESULT __stdcall get_AllResourceMaps(Windows::Foundation::Collections::IMapView<String, Windows::ApplicationModel::Resources::Core::ResourceMap> ** maps) = 0;
-	virtual HRESULT __stdcall deprecated_1() = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
 	virtual HRESULT __stdcall abi_LoadPriFiles(Windows::Foundation::Collections::IIterable<Windows::Storage::IStorageFile> * files) = 0;
 	virtual HRESULT __stdcall abi_UnloadPriFiles(Windows::Foundation::Collections::IIterable<Windows::Storage::IStorageFile> * files) = 0;
 };
@@ -9048,16 +9048,16 @@ struct __declspec(uuid("1c98c219-0b13-4240-89a5-d495dc189a00")) __declspec(novta
 {
 	virtual HRESULT __stdcall get_Uri(Windows::Foundation::IUriRuntimeClass ** uri) = 0;
 	virtual HRESULT __stdcall get_Candidates(Windows::Foundation::Collections::IVectorView<Windows::ApplicationModel::Resources::Core::ResourceCandidate> ** value) = 0;
-	virtual HRESULT __stdcall deprecated_1() = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
 	virtual HRESULT __stdcall abi_ResolveForContext(Windows::ApplicationModel::Resources::Core::IResourceContext * resourceContext, Windows::ApplicationModel::Resources::Core::IResourceCandidate ** result) = 0;
-	virtual HRESULT __stdcall deprecated_2() = 0;
+	virtual HRESULT __stdcall reserved_2() = 0;
 	virtual HRESULT __stdcall abi_ResolveAllForContext(Windows::ApplicationModel::Resources::Core::IResourceContext * resourceContext, Windows::Foundation::Collections::IVectorView<Windows::ApplicationModel::Resources::Core::ResourceCandidate> ** instances) = 0;
 };
 
 struct __declspec(uuid("72284824-db8c-42f8-b08c-53ff357dad82")) __declspec(novtable) IResourceMap : ::IInspectable
 {
 	virtual HRESULT __stdcall get_Uri(Windows::Foundation::IUriRuntimeClass ** uri) = 0;
-	virtual HRESULT __stdcall deprecated_1() = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
 	virtual HRESULT __stdcall abi_GetValueForContext(HSTRING resource, Windows::ApplicationModel::Resources::Core::IResourceContext * context, Windows::ApplicationModel::Resources::Core::IResourceCandidate ** value) = 0;
 	virtual HRESULT __stdcall abi_GetSubtree(HSTRING reference, Windows::ApplicationModel::Resources::Core::IResourceMap ** map) = 0;
 };
@@ -9251,7 +9251,7 @@ struct __declspec(uuid("d52dc065-da3f-4685-995e-9b482eb5e603")) __declspec(novta
 	virtual HRESULT __stdcall get_LinkUri(Windows::Foundation::IUriRuntimeClass ** value) = 0;
 	virtual HRESULT __stdcall get_AppId(GUID * value) = 0;
 	virtual HRESULT __stdcall abi_RequestAppPurchaseAsync(boolean includeReceipt, Windows::Foundation::IAsyncOperation<String> ** requestAppPurchaseOperation) = 0;
-	virtual HRESULT __stdcall deprecated_1() = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
 	virtual HRESULT __stdcall abi_LoadListingInformationAsync(Windows::Foundation::IAsyncOperation<Windows::ApplicationModel::Store::ListingInformation> ** loadListingOperation) = 0;
 	virtual HRESULT __stdcall abi_GetAppReceiptAsync(Windows::Foundation::IAsyncOperation<String> ** appReceiptOperation) = 0;
 	virtual HRESULT __stdcall abi_GetProductReceiptAsync(HSTRING productId, Windows::Foundation::IAsyncOperation<String> ** getProductReceiptOperation) = 0;
@@ -9271,7 +9271,7 @@ struct __declspec(uuid("f17f9db1-74cd-4787-9787-19866e9a5559")) __declspec(novta
 	virtual HRESULT __stdcall get_LinkUri(Windows::Foundation::IUriRuntimeClass ** value) = 0;
 	virtual HRESULT __stdcall get_AppId(GUID * value) = 0;
 	virtual HRESULT __stdcall abi_RequestAppPurchaseAsync(boolean includeReceipt, Windows::Foundation::IAsyncOperation<String> ** requestAppPurchaseOperation) = 0;
-	virtual HRESULT __stdcall deprecated_1() = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
 	virtual HRESULT __stdcall abi_LoadListingInformationAsync(Windows::Foundation::IAsyncOperation<Windows::ApplicationModel::Store::ListingInformation> ** loadListingOperation) = 0;
 	virtual HRESULT __stdcall abi_GetAppReceiptAsync(Windows::Foundation::IAsyncOperation<String> ** appReceiptOperation) = 0;
 	virtual HRESULT __stdcall abi_GetProductReceiptAsync(HSTRING productId, Windows::Foundation::IAsyncOperation<String> ** getProductReceiptOperation) = 0;
@@ -10013,9 +10013,9 @@ struct __declspec(uuid("c32a74d9-2608-474c-912c-06dd490f4af7")) __declspec(novta
 
 struct __declspec(uuid("ee21a3aa-976a-4c70-803d-083ea55bcbc4")) __declspec(novtable) IGeocoordinate : ::IInspectable
 {
-	virtual HRESULT __stdcall deprecated_1() = 0;
-	virtual HRESULT __stdcall deprecated_2() = 0;
-	virtual HRESULT __stdcall deprecated_3() = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
+	virtual HRESULT __stdcall reserved_2() = 0;
+	virtual HRESULT __stdcall reserved_3() = 0;
 	virtual HRESULT __stdcall get_Accuracy(double * value) = 0;
 	virtual HRESULT __stdcall get_AltitudeAccuracy(Windows::Foundation::IReference<double> ** value) = 0;
 	virtual HRESULT __stdcall get_Heading(Windows::Foundation::IReference<double> ** value) = 0;
@@ -10621,6 +10621,7 @@ struct __declspec(uuid("1a92b015-47c3-468a-9333-0c6517574883")) __declspec(novta
 {
 	virtual HRESULT __stdcall get_DeviceId(HSTRING * value) = 0;
 	virtual HRESULT __stdcall get_Capabilities(Windows::Devices::PointOfService::IMagneticStripeReaderCapabilities ** value) = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
 	virtual HRESULT __stdcall get_DeviceAuthenticationProtocol(Modern::Windows::Devices::PointOfService::MagneticStripeReaderAuthenticationProtocol * value) = 0;
 	virtual HRESULT __stdcall abi_CheckHealthAsync(Modern::Windows::Devices::PointOfService::UnifiedPosHealthCheckLevel level, Windows::Foundation::IAsyncOperation<String> ** operation) = 0;
 	virtual HRESULT __stdcall abi_ClaimReaderAsync(Windows::Foundation::IAsyncOperation<Windows::Devices::PointOfService::ClaimedMagneticStripeReader> ** operation) = 0;
@@ -10679,6 +10680,8 @@ struct __declspec(uuid("475ca8f3-9417-48bc-b9d7-4163a7844c02")) __declspec(novta
 	virtual HRESULT __stdcall abi_RetainDevice() = 0;
 	virtual HRESULT __stdcall abi_SetErrorReportingType(Modern::Windows::Devices::PointOfService::MagneticStripeReaderErrorReportingType value) = 0;
 	virtual HRESULT __stdcall abi_RetrieveDeviceAuthenticationDataAsync(Windows::Foundation::IAsyncOperation<Windows::Storage::Streams::IBuffer> ** operation) = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
+	virtual HRESULT __stdcall reserved_2() = 0;
 	virtual HRESULT __stdcall abi_UpdateKeyAsync(HSTRING key, HSTRING keyName, Windows::Foundation::IAsyncAction ** result) = 0;
 	virtual HRESULT __stdcall abi_ResetStatisticsAsync(Windows::Foundation::Collections::IIterable<String> * statisticsCategories, Windows::Foundation::IAsyncAction ** result) = 0;
 	virtual HRESULT __stdcall abi_UpdateStatisticsAsync(Windows::Foundation::Collections::IIterable<Windows::Foundation::Collections::IKeyValuePair<String, String>> * statistics, Windows::Foundation::IAsyncAction ** result) = 0;
@@ -11106,6 +11109,8 @@ struct __declspec(uuid("5bf4e813-3b53-4c6e-b61a-d86a63755650")) __declspec(novta
 {
 	virtual HRESULT __stdcall get_Format(Modern::Windows::Devices::Sms::SmsDataFormat * value) = 0;
 	virtual HRESULT __stdcall put_Format(Modern::Windows::Devices::Sms::SmsDataFormat value) = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
+	virtual HRESULT __stdcall reserved_2() = 0;
 };
 
 struct __declspec(uuid("d61c904c-a495-487f-9a6f-971548c5bc9f")) __declspec(novtable) ISmsTextMessage : ::IInspectable
@@ -11128,6 +11133,7 @@ struct __declspec(uuid("d61c904c-a495-487f-9a6f-971548c5bc9f")) __declspec(novta
 struct __declspec(uuid("7f68c5ed-3ccc-47a3-8c55-380d3b010892")) __declspec(novtable) ISmsTextMessageStatics : ::IInspectable
 {
 	virtual HRESULT __stdcall abi_FromBinaryMessage(Windows::Devices::Sms::ISmsBinaryMessage * binaryMessage, Windows::Devices::Sms::ISmsTextMessage ** textMessage) = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
 };
 
 struct __declspec(uuid("9889f253-f188-4427-8d54-ce0c2423c5c1")) __declspec(novtable) ISmsDeviceMessageStore : ::IInspectable
@@ -11545,6 +11551,25 @@ struct __declspec(uuid("4bd682dd-7554-40e9-9a9b-82654ede7e62")) __declspec(novta
 	virtual HRESULT __stdcall abi_GetPoint(Modern::Windows::Foundation::Point * value) = 0;
 	virtual HRESULT __stdcall abi_GetSize(Modern::Windows::Foundation::Size * value) = 0;
 	virtual HRESULT __stdcall abi_GetRect(Modern::Windows::Foundation::Rect * value) = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
+	virtual HRESULT __stdcall reserved_2() = 0;
+	virtual HRESULT __stdcall reserved_3() = 0;
+	virtual HRESULT __stdcall reserved_4() = 0;
+	virtual HRESULT __stdcall reserved_5() = 0;
+	virtual HRESULT __stdcall reserved_6() = 0;
+	virtual HRESULT __stdcall reserved_7() = 0;
+	virtual HRESULT __stdcall reserved_8() = 0;
+	virtual HRESULT __stdcall reserved_9() = 0;
+	virtual HRESULT __stdcall reserved_10() = 0;
+	virtual HRESULT __stdcall reserved_11() = 0;
+	virtual HRESULT __stdcall reserved_12() = 0;
+	virtual HRESULT __stdcall reserved_13() = 0;
+	virtual HRESULT __stdcall reserved_14() = 0;
+	virtual HRESULT __stdcall reserved_15() = 0;
+	virtual HRESULT __stdcall reserved_16() = 0;
+	virtual HRESULT __stdcall reserved_17() = 0;
+	virtual HRESULT __stdcall reserved_18() = 0;
+	virtual HRESULT __stdcall reserved_19() = 0;
 };
 
 struct __declspec(uuid("629bdbc8-d932-4ff4-96b9-8d96c5c1e858")) __declspec(novtable) IPropertyValueStatics : ::IInspectable
@@ -11569,6 +11594,25 @@ struct __declspec(uuid("629bdbc8-d932-4ff4-96b9-8d96c5c1e858")) __declspec(novta
 	virtual HRESULT __stdcall abi_CreatePoint(Modern::Windows::Foundation::Point value, IInspectable ** propertyValue) = 0;
 	virtual HRESULT __stdcall abi_CreateSize(Modern::Windows::Foundation::Size value, IInspectable ** propertyValue) = 0;
 	virtual HRESULT __stdcall abi_CreateRect(Modern::Windows::Foundation::Rect value, IInspectable ** propertyValue) = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
+	virtual HRESULT __stdcall reserved_2() = 0;
+	virtual HRESULT __stdcall reserved_3() = 0;
+	virtual HRESULT __stdcall reserved_4() = 0;
+	virtual HRESULT __stdcall reserved_5() = 0;
+	virtual HRESULT __stdcall reserved_6() = 0;
+	virtual HRESULT __stdcall reserved_7() = 0;
+	virtual HRESULT __stdcall reserved_8() = 0;
+	virtual HRESULT __stdcall reserved_9() = 0;
+	virtual HRESULT __stdcall reserved_10() = 0;
+	virtual HRESULT __stdcall reserved_11() = 0;
+	virtual HRESULT __stdcall reserved_12() = 0;
+	virtual HRESULT __stdcall reserved_13() = 0;
+	virtual HRESULT __stdcall reserved_14() = 0;
+	virtual HRESULT __stdcall reserved_15() = 0;
+	virtual HRESULT __stdcall reserved_16() = 0;
+	virtual HRESULT __stdcall reserved_17() = 0;
+	virtual HRESULT __stdcall reserved_18() = 0;
+	virtual HRESULT __stdcall reserved_19() = 0;
 };
 
 struct __declspec(uuid("96369f54-8eb6-48f0-abce-c1b211e627c3")) __declspec(novtable) IStringable : ::IInspectable
@@ -12303,7 +12347,7 @@ struct __declspec(uuid("86c7537e-b938-4aa2-84b0-2c33dc5b1450")) __declspec(novta
 struct __declspec(uuid("11730ca5-4b00-41b2-b332-73b12a497d54")) __declspec(novtable) ICurrencyFormatter : ::IInspectable
 {
 	virtual HRESULT __stdcall get_Currency(HSTRING * value) = 0;
-	virtual HRESULT __stdcall deprecated_1() = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
 };
 
 struct __declspec(uuid("072c2f1d-e7ba-4197-920e-247c92f7dea6")) __declspec(novtable) ICurrencyFormatter2 : ::IInspectable
@@ -12403,6 +12447,7 @@ struct __declspec(uuid("ea9f4f1b-b505-4450-a4d1-e8ca94529d8d")) __declspec(novta
 
 struct __declspec(uuid("dd831f25-185c-4595-9fb9-ccbe6ec18a6f")) __declspec(novtable) IPixelDataProvider : ::IInspectable
 {
+	virtual HRESULT __stdcall reserved_1() = 0;
 };
 
 struct __declspec(uuid("72a49a1c-8081-438d-91bc-94ecfc8185c6")) __declspec(novtable) IBitmapFrame : ::IInspectable
@@ -12479,6 +12524,7 @@ struct __declspec(uuid("2bc468e3-e1f8-4b54-95e8-32919551ce62")) __declspec(novta
 	virtual HRESULT __stdcall get_GeneratedThumbnailHeight(unsigned * value) = 0;
 	virtual HRESULT __stdcall put_GeneratedThumbnailHeight(unsigned value) = 0;
 	virtual HRESULT __stdcall get_BitmapTransform(Windows::Graphics::Imaging::IBitmapTransform ** value) = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
 	virtual HRESULT __stdcall abi_GoToNextFrameAsync(Windows::Foundation::IAsyncAction ** asyncInfo) = 0;
 	virtual HRESULT __stdcall abi_GoToNextFrameWithEncodingOptionsAsync(Windows::Foundation::Collections::IIterable<Windows::Foundation::Collections::IKeyValuePair<String, Windows::Graphics::Imaging::BitmapTypedValue>> * encodingOptions, Windows::Foundation::IAsyncAction ** asyncInfo) = 0;
 	virtual HRESULT __stdcall abi_FlushAsync(Windows::Foundation::IAsyncAction ** asyncInfo) = 0;
@@ -13211,6 +13257,7 @@ struct __declspec(uuid("3712d543-45eb-4138-aa62-c01e26f3843f")) __declspec(novta
 	virtual HRESULT __stdcall get_VideoProperties(Windows::Storage::FileProperties::IVideoProperties ** value) = 0;
 	virtual HRESULT __stdcall put_Thumbnail(Windows::Storage::Streams::IRandomAccessStreamReference * value) = 0;
 	virtual HRESULT __stdcall get_Thumbnail(Windows::Storage::Streams::IRandomAccessStreamReference ** value) = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
 };
 
 struct __declspec(uuid("ef77e0d9-d158-4b7a-863f-203342fbfd41")) __declspec(novtable) IMediaStreamSourceFactory : ::IInspectable
@@ -13245,6 +13292,12 @@ struct __declspec(uuid("dfdf218f-a6cf-4579-be41-73dd941ad972")) __declspec(novta
 
 struct __declspec(uuid("4eb88292-ecdf-493e-841d-dd4add7caca2")) __declspec(novtable) IMediaStreamSampleProtectionProperties : ::IInspectable
 {
+	virtual HRESULT __stdcall reserved_1() = 0;
+	virtual HRESULT __stdcall reserved_2() = 0;
+	virtual HRESULT __stdcall reserved_3() = 0;
+	virtual HRESULT __stdcall reserved_4() = 0;
+	virtual HRESULT __stdcall reserved_5() = 0;
+	virtual HRESULT __stdcall reserved_6() = 0;
 };
 
 struct __declspec(uuid("907c00e9-18a3-4951-887a-2c1eebd5c69e")) __declspec(novtable) IMediaStreamSourceClosedRequest : ::IInspectable
@@ -13680,6 +13733,8 @@ struct __declspec(uuid("62bc7a16-005c-4b3b-8a0b-0a090e9687f3")) __declspec(novta
 
 struct __declspec(uuid("98f10d79-13ea-49ff-be70-2673db69702c")) __declspec(novtable) IAudioEncodingPropertiesWithFormatUserData : ::IInspectable
 {
+	virtual HRESULT __stdcall reserved_1() = 0;
+	virtual HRESULT __stdcall reserved_2() = 0;
 };
 
 struct __declspec(uuid("0cad332c-ebe9-4527-b36d-e42a13cf38db")) __declspec(novtable) IAudioEncodingPropertiesStatics : ::IInspectable
@@ -13772,6 +13827,8 @@ struct __declspec(uuid("a461ff85-e57a-4128-9b21-d5331b04235c")) __declspec(novta
 
 struct __declspec(uuid("f743a1ef-d465-4290-a94b-ef0f1528f8e3")) __declspec(novtable) IVideoEncodingProperties2 : ::IInspectable
 {
+	virtual HRESULT __stdcall reserved_1() = 0;
+	virtual HRESULT __stdcall reserved_2() = 0;
 	virtual HRESULT __stdcall put_ProfileId(int value) = 0;
 	virtual HRESULT __stdcall get_ProfileId(int * value) = 0;
 };
@@ -14381,8 +14438,8 @@ struct __declspec(uuid("2a9da250-c769-458c-afe8-feb8d4d3b2ef")) __declspec(novta
 	virtual HRESULT __stdcall put_ProxyCredential(Windows::Security::Credentials::IPasswordCredential * credential) = 0;
 	virtual HRESULT __stdcall get_Method(HSTRING * value) = 0;
 	virtual HRESULT __stdcall put_Method(HSTRING value) = 0;
-	virtual HRESULT __stdcall deprecated_1() = 0;
-	virtual HRESULT __stdcall deprecated_2() = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
+	virtual HRESULT __stdcall reserved_2() = 0;
 	virtual HRESULT __stdcall get_CostPolicy(Modern::Windows::Networking::BackgroundTransfer::BackgroundTransferCostPolicy * value) = 0;
 	virtual HRESULT __stdcall put_CostPolicy(Modern::Windows::Networking::BackgroundTransfer::BackgroundTransferCostPolicy value) = 0;
 };
@@ -14451,7 +14508,7 @@ struct __declspec(uuid("ded06846-90ca-44fb-8fb1-124154c0d539")) __declspec(novta
 	virtual HRESULT __stdcall get_Guid(GUID * value) = 0;
 	virtual HRESULT __stdcall get_RequestedUri(Windows::Foundation::IUriRuntimeClass ** value) = 0;
 	virtual HRESULT __stdcall get_Method(HSTRING * value) = 0;
-	virtual HRESULT __stdcall deprecated_1() = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
 	virtual HRESULT __stdcall get_CostPolicy(Modern::Windows::Networking::BackgroundTransfer::BackgroundTransferCostPolicy * value) = 0;
 	virtual HRESULT __stdcall put_CostPolicy(Modern::Windows::Networking::BackgroundTransfer::BackgroundTransferCostPolicy value) = 0;
 	virtual HRESULT __stdcall abi_GetResultStreamAt(unsigned long long position, Windows::Storage::Streams::IInputStream ** value) = 0;
@@ -14495,7 +14552,7 @@ struct __declspec(uuid("556189f2-2774-4df6-9fa5-209f2bfb12f7")) __declspec(novta
 struct __declspec(uuid("52a65a35-c64e-426c-9919-540d0d21a650")) __declspec(novtable) IBackgroundDownloaderStaticMethods : ::IInspectable
 {
 	virtual HRESULT __stdcall abi_GetCurrentDownloadsAsync(Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Networking::BackgroundTransfer::DownloadOperation>> ** operation) = 0;
-	virtual HRESULT __stdcall deprecated_1() = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
 };
 
 struct __declspec(uuid("2faa1327-1ad4-4ca5-b2cd-08dbf0746afe")) __declspec(novtable) IBackgroundDownloaderStaticMethods2 : ::IInspectable
@@ -14506,7 +14563,7 @@ struct __declspec(uuid("2faa1327-1ad4-4ca5-b2cd-08dbf0746afe")) __declspec(novta
 struct __declspec(uuid("f2875cfb-9b05-4741-9121-740a83e247df")) __declspec(novtable) IBackgroundUploaderStaticMethods : ::IInspectable
 {
 	virtual HRESULT __stdcall abi_GetCurrentUploadsAsync(Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Networking::BackgroundTransfer::UploadOperation>> ** operation) = 0;
-	virtual HRESULT __stdcall deprecated_1() = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
 };
 
 struct __declspec(uuid("e919ac62-ea08-42f0-a2ac-07e467549080")) __declspec(novtable) IBackgroundUploaderStaticMethods2 : ::IInspectable
@@ -14611,8 +14668,8 @@ struct __declspec(uuid("71ba143c-598e-49d0-84eb-8febaedcc195")) __declspec(novta
 	virtual HRESULT __stdcall abi_GetConnectionCost(Windows::Networking::Connectivity::IConnectionCost ** value) = 0;
 	virtual HRESULT __stdcall abi_GetDataPlanStatus(Windows::Networking::Connectivity::IDataPlanStatus ** value) = 0;
 	virtual HRESULT __stdcall get_NetworkAdapter(Windows::Networking::Connectivity::INetworkAdapter ** value) = 0;
-	virtual HRESULT __stdcall deprecated_1() = 0;
-	virtual HRESULT __stdcall deprecated_2() = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
+	virtual HRESULT __stdcall reserved_2() = 0;
 	virtual HRESULT __stdcall get_NetworkSecuritySettings(Windows::Networking::Connectivity::INetworkSecuritySettings ** value) = 0;
 };
 
@@ -14920,6 +14977,7 @@ struct __declspec(uuid("e756c791-1002-4de5-83c7-de61d88831d0")) __declspec(novta
 
 struct __declspec(uuid("e756c791-1003-4de5-83c7-de61d88831d0")) __declspec(novtable) IHotspotAuthenticationContext : ::IInspectable
 {
+	virtual HRESULT __stdcall reserved_1() = 0;
 	virtual HRESULT __stdcall get_NetworkAdapter(Windows::Networking::Connectivity::INetworkAdapter ** value) = 0;
 	virtual HRESULT __stdcall get_RedirectMessageUrl(Windows::Foundation::IUriRuntimeClass ** value) = 0;
 	virtual HRESULT __stdcall get_RedirectMessageXml(Windows::Data::Xml::Dom::IXmlDocument ** value) = 0;
@@ -14970,6 +15028,8 @@ struct __declspec(uuid("2f9acf82-2004-4d5d-bf81-2aba1b4be4a8")) __declspec(novta
 {
 	virtual HRESULT __stdcall get_DataCodingScheme(byte * value) = 0;
 	virtual HRESULT __stdcall put_DataCodingScheme(byte value) = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
+	virtual HRESULT __stdcall reserved_2() = 0;
 	virtual HRESULT __stdcall get_PayloadAsText(HSTRING * value) = 0;
 	virtual HRESULT __stdcall put_PayloadAsText(HSTRING value) = 0;
 };
@@ -15612,6 +15672,8 @@ struct __declspec(uuid("320b7e22-3cb0-4cdf-8663-1d28910065eb")) __declspec(novta
 	virtual HRESULT __stdcall abi_Compare(Windows::Storage::Streams::IBuffer * object1, Windows::Storage::Streams::IBuffer * object2, boolean * isEqual) = 0;
 	virtual HRESULT __stdcall abi_GenerateRandom(unsigned length, Windows::Storage::Streams::IBuffer ** buffer) = 0;
 	virtual HRESULT __stdcall abi_GenerateRandomNumber(unsigned * value) = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
+	virtual HRESULT __stdcall reserved_2() = 0;
 	virtual HRESULT __stdcall abi_DecodeFromHexString(HSTRING value, Windows::Storage::Streams::IBuffer ** buffer) = 0;
 	virtual HRESULT __stdcall abi_EncodeToHexString(Windows::Storage::Streams::IBuffer * buffer, HSTRING * value) = 0;
 	virtual HRESULT __stdcall abi_DecodeFromBase64String(HSTRING value, Windows::Storage::Streams::IBuffer ** buffer) = 0;
@@ -15748,6 +15810,8 @@ struct __declspec(uuid("5b082a31-a728-4916-b5ee-ffcb8acf2417")) __declspec(novta
 	virtual HRESULT __stdcall put_IssuerName(HSTRING value) = 0;
 	virtual HRESULT __stdcall get_FriendlyName(HSTRING * value) = 0;
 	virtual HRESULT __stdcall put_FriendlyName(HSTRING value) = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
+	virtual HRESULT __stdcall reserved_2() = 0;
 	virtual HRESULT __stdcall get_HardwareOnly(boolean * value) = 0;
 	virtual HRESULT __stdcall put_HardwareOnly(boolean value) = 0;
 };
@@ -15763,6 +15827,9 @@ struct __declspec(uuid("333f740c-04d8-43b3-b278-8c5fcc9be5a0")) __declspec(novta
 {
 	virtual HRESULT __stdcall abi_BuildChainAsync(Windows::Foundation::Collections::IIterable<Windows::Security::Cryptography::Certificates::Certificate> * certificates, Windows::Foundation::IAsyncOperation<Windows::Security::Cryptography::Certificates::CertificateChain> ** value) = 0;
 	virtual HRESULT __stdcall abi_BuildChainWithParametersAsync(Windows::Foundation::Collections::IIterable<Windows::Security::Cryptography::Certificates::Certificate> * certificates, Windows::Security::Cryptography::Certificates::IChainBuildingParameters * parameters, Windows::Foundation::IAsyncOperation<Windows::Security::Cryptography::Certificates::CertificateChain> ** value) = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
+	virtual HRESULT __stdcall reserved_2() = 0;
+	virtual HRESULT __stdcall reserved_3() = 0;
 	virtual HRESULT __stdcall abi_GetCertificateBlob(Windows::Storage::Streams::IBuffer ** value) = 0;
 	virtual HRESULT __stdcall get_Subject(HSTRING * value) = 0;
 	virtual HRESULT __stdcall get_Issuer(HSTRING * value) = 0;
@@ -15799,6 +15866,7 @@ struct __declspec(uuid("50d020db-1d2f-4c1a-b5c5-d0188ff91f47")) __declspec(novta
 struct __declspec(uuid("61899d9d-3757-4ecb-bddc-0ca357d7a936")) __declspec(novtable) ICmsAttachedSignature : ::IInspectable
 {
 	virtual HRESULT __stdcall get_Certificates(Windows::Foundation::Collections::IVectorView<Windows::Security::Cryptography::Certificates::Certificate> ** value) = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
 	virtual HRESULT __stdcall get_Signers(Windows::Foundation::Collections::IVectorView<Windows::Security::Cryptography::Certificates::CmsSignerInfo> ** value) = 0;
 	virtual HRESULT __stdcall abi_VerifySignature(Modern::Windows::Security::Cryptography::Certificates::SignatureValidationResult * value) = 0;
 };
@@ -16317,6 +16385,7 @@ struct __declspec(uuid("887411eb-7f54-4732-a5f0-5e43e3b8c2f5")) __declspec(novta
 	virtual HRESULT __stdcall abi_AppendLinesWithEncodingAsync(Windows::Storage::IStorageFile * file, Windows::Foundation::Collections::IIterable<String> * lines, Modern::Windows::Storage::Streams::UnicodeEncoding encoding, Windows::Foundation::IAsyncAction ** operation) = 0;
 	virtual HRESULT __stdcall abi_ReadBufferAsync(Windows::Storage::IStorageFile * file, Windows::Foundation::IAsyncOperation<Windows::Storage::Streams::IBuffer> ** operation) = 0;
 	virtual HRESULT __stdcall abi_WriteBufferAsync(Windows::Storage::IStorageFile * file, Windows::Storage::Streams::IBuffer * buffer, Windows::Foundation::IAsyncAction ** operation) = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
 };
 
 struct __declspec(uuid("0f2f3758-8ec7-4381-922b-8f6c07d288f3")) __declspec(novtable) IPathIOStatics : ::IInspectable
@@ -16335,6 +16404,7 @@ struct __declspec(uuid("0f2f3758-8ec7-4381-922b-8f6c07d288f3")) __declspec(novta
 	virtual HRESULT __stdcall abi_AppendLinesWithEncodingAsync(HSTRING absolutePath, Windows::Foundation::Collections::IIterable<String> * lines, Modern::Windows::Storage::Streams::UnicodeEncoding encoding, Windows::Foundation::IAsyncAction ** operation) = 0;
 	virtual HRESULT __stdcall abi_ReadBufferAsync(HSTRING absolutePath, Windows::Foundation::IAsyncOperation<Windows::Storage::Streams::IBuffer> ** operation) = 0;
 	virtual HRESULT __stdcall abi_WriteBufferAsync(HSTRING absolutePath, Windows::Storage::Streams::IBuffer * buffer, Windows::Foundation::IAsyncAction ** operation) = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
 };
 
 struct __declspec(uuid("8ffc224a-e782-495d-b614-654c4f0b2370")) __declspec(novtable) ICachedFileManagerStatics : ::IInspectable
@@ -17019,6 +17089,7 @@ struct __declspec(uuid("e2b50029-b4c1-4314-a4b8-fb813a2f275e")) __declspec(novta
 	virtual HRESULT __stdcall get_InputStreamOptions(Modern::Windows::Storage::Streams::InputStreamOptions * value) = 0;
 	virtual HRESULT __stdcall put_InputStreamOptions(Modern::Windows::Storage::Streams::InputStreamOptions value) = 0;
 	virtual HRESULT __stdcall abi_ReadByte(byte * value) = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
 	virtual HRESULT __stdcall abi_ReadBuffer(unsigned length, Windows::Storage::Streams::IBuffer ** buffer) = 0;
 	virtual HRESULT __stdcall abi_ReadBoolean(boolean * value) = 0;
 	virtual HRESULT __stdcall abi_ReadGuid(GUID * value) = 0;
@@ -17056,6 +17127,7 @@ struct __declspec(uuid("64b89265-d341-4922-b38a-dd4af8808c4e")) __declspec(novta
 	virtual HRESULT __stdcall get_ByteOrder(Modern::Windows::Storage::Streams::ByteOrder * value) = 0;
 	virtual HRESULT __stdcall put_ByteOrder(Modern::Windows::Storage::Streams::ByteOrder value) = 0;
 	virtual HRESULT __stdcall abi_WriteByte(byte value) = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
 	virtual HRESULT __stdcall abi_WriteBuffer(Windows::Storage::Streams::IBuffer * buffer) = 0;
 	virtual HRESULT __stdcall abi_WriteBufferRange(Windows::Storage::Streams::IBuffer * buffer, unsigned start, unsigned count) = 0;
 	virtual HRESULT __stdcall abi_WriteBoolean(boolean value) = 0;
@@ -17708,6 +17780,7 @@ struct __declspec(uuid("22f3b823-0b7c-424e-9df7-33d4f962931b")) __declspec(novta
 	virtual HRESULT __stdcall get_Point(Modern::Windows::Foundation::Point * value) = 0;
 	virtual HRESULT __stdcall get_BoundingBox(Modern::Windows::Foundation::Rect * value) = 0;
 	virtual HRESULT __stdcall abi_EvaluateProximityToRect(Modern::Windows::Foundation::Rect controlBoundingBox, Modern::Windows::UI::Core::CoreProximityEvaluation * proximityEvaluation) = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
 };
 
 struct __declspec(uuid("179d65e7-4658-4cb6-aa13-41d094ea255e")) __declspec(novtable) IWindowActivatedEventArgs : ::IInspectable
@@ -18572,26 +18645,26 @@ struct __declspec(uuid("9e9e51e0-2bb5-4bc0-bb8d-42b23abcc88d")) __declspec(novta
 	virtual HRESULT __stdcall get_TileId(HSTRING * value) = 0;
 	virtual HRESULT __stdcall put_Arguments(HSTRING value) = 0;
 	virtual HRESULT __stdcall get_Arguments(HSTRING * value) = 0;
-	virtual HRESULT __stdcall deprecated_1() = 0;
-	virtual HRESULT __stdcall deprecated_2() = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
+	virtual HRESULT __stdcall reserved_2() = 0;
 	virtual HRESULT __stdcall put_DisplayName(HSTRING value) = 0;
 	virtual HRESULT __stdcall get_DisplayName(HSTRING * value) = 0;
-	virtual HRESULT __stdcall deprecated_3() = 0;
-	virtual HRESULT __stdcall deprecated_4() = 0;
-	virtual HRESULT __stdcall deprecated_5() = 0;
-	virtual HRESULT __stdcall deprecated_6() = 0;
-	virtual HRESULT __stdcall deprecated_7() = 0;
-	virtual HRESULT __stdcall deprecated_8() = 0;
+	virtual HRESULT __stdcall reserved_3() = 0;
+	virtual HRESULT __stdcall reserved_4() = 0;
+	virtual HRESULT __stdcall reserved_5() = 0;
+	virtual HRESULT __stdcall reserved_6() = 0;
+	virtual HRESULT __stdcall reserved_7() = 0;
+	virtual HRESULT __stdcall reserved_8() = 0;
 	virtual HRESULT __stdcall put_LockScreenBadgeLogo(Windows::Foundation::IUriRuntimeClass * value) = 0;
 	virtual HRESULT __stdcall get_LockScreenBadgeLogo(Windows::Foundation::IUriRuntimeClass ** value) = 0;
 	virtual HRESULT __stdcall put_LockScreenDisplayBadgeAndTileText(boolean value) = 0;
 	virtual HRESULT __stdcall get_LockScreenDisplayBadgeAndTileText(boolean * value) = 0;
-	virtual HRESULT __stdcall deprecated_9() = 0;
-	virtual HRESULT __stdcall deprecated_10() = 0;
-	virtual HRESULT __stdcall deprecated_11() = 0;
-	virtual HRESULT __stdcall deprecated_12() = 0;
-	virtual HRESULT __stdcall deprecated_13() = 0;
-	virtual HRESULT __stdcall deprecated_14() = 0;
+	virtual HRESULT __stdcall reserved_9() = 0;
+	virtual HRESULT __stdcall reserved_10() = 0;
+	virtual HRESULT __stdcall reserved_11() = 0;
+	virtual HRESULT __stdcall reserved_12() = 0;
+	virtual HRESULT __stdcall reserved_13() = 0;
+	virtual HRESULT __stdcall reserved_14() = 0;
 	virtual HRESULT __stdcall abi_RequestCreateAsync(Windows::Foundation::IAsyncOperation<bool> ** operation) = 0;
 	virtual HRESULT __stdcall abi_RequestCreateAsyncWithPoint(Modern::Windows::Foundation::Point invocationPoint, Windows::Foundation::IAsyncOperation<bool> ** operation) = 0;
 	virtual HRESULT __stdcall abi_RequestCreateAsyncWithRect(Modern::Windows::Foundation::Rect selection, Windows::Foundation::IAsyncOperation<bool> ** operation) = 0;
@@ -18640,8 +18713,8 @@ struct __declspec(uuid("1d8df333-815e-413f-9f50-a81da70a96b2")) __declspec(novta
 
 struct __declspec(uuid("57f52ca0-51bc-4abf-8ebf-627a0398b05a")) __declspec(novtable) ISecondaryTileFactory : ::IInspectable
 {
-	virtual HRESULT __stdcall deprecated_1() = 0;
-	virtual HRESULT __stdcall deprecated_2() = 0;
+	virtual HRESULT __stdcall reserved_1() = 0;
+	virtual HRESULT __stdcall reserved_2() = 0;
 	virtual HRESULT __stdcall abi_CreateWithId(HSTRING tileId, Windows::UI::StartScreen::ISecondaryTile ** value) = 0;
 };
 
